@@ -1,0 +1,105 @@
+@import "utilities/variables";
+@import "utilities/mixins";
+
+:host {
+  .filter {
+    padding-bottom: 85px;
+    color: $color-dark;
+    overscroll-behavior-y: contain;
+    @include respond(lg) {
+      padding-bottom: 0;
+    }
+    &__header {
+      padding: 21px 37px;
+      margin-bottom: 3.2rem;
+      border-bottom: 1px solid $color-secondary-shade;
+      position: relative;
+      @include respond(xl) {
+        display: none;
+      }
+    }
+
+    &__closeBtn {
+      position: absolute;
+      left: 37px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+
+    &__heading {
+      display: none;
+      @include respond(xl) {
+        display: block;
+        margin-bottom: 16px;
+      }
+    }
+
+    &__selection {
+      margin: 16px 0 32px 0;
+      @include respond(xl) {
+        margin: 7px 0 32px 0;
+      }
+    }
+
+    &__boxes {
+      column-gap: 9px;
+      @include respond(xl) {
+        column-gap: 5px;
+      }
+    }
+
+    &__box {
+      width: 42px;
+      height: 42px;
+      color: $color-dark-shade;
+      border: 0.5px solid $color-dark-shade;
+      background-color: $color-secondary-shade;
+      font-size: 10px;
+      font-weight: bold;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      column-gap: 2px;
+
+      &.clicked {
+        color: $color-secondary-tint;
+        background-color: $color-dark-tint;
+      }
+    }
+
+    &__choices {
+      padding: 0 37px;
+      @include respond(xl) {
+        padding: 30px 138px 10px 5px;
+      }
+    }
+
+    &__cta {
+      padding: 21px 0;
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: $color-secondary-tint;
+      @include shadow-3;
+
+      @include respond(xl) {
+        display: none;
+      }
+    }
+  }
+
+  .form-control {
+    display: flex;
+    align-items: center;
+    column-gap: 5px;
+
+    .label {
+      @include respond(xl) {
+        font-size: 12px;
+        font-weight: 500;
+        line-height: 23px;
+      }
+    }
+  }
+}

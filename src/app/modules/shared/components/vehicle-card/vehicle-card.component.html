@@ -1,0 +1,52 @@
+<div class="hotel__item">
+  <div class="hotel__imgbox">
+    <img
+      [src]="
+        data.VehiclePicture != null
+          ? data.VehiclePicture
+          : 'assets/icons/hotel.jpg'
+      "
+      class="hotel__img"
+      alt="vehicle img"
+    />
+    <div class="hotel__card-love">
+      <!-- <i class="icon-favorite_black_24dp"></i>-->
+    </div>
+  </div>
+
+  <div class="hotel__details">
+    <div class="hotel__details-container flex flex-col">
+      <div class="hotel__body">
+        <h2 class="hotel-item-name">
+          {{ isRtl ? data.VehicleNameAr : data.VehicleName }}
+        </h2>
+        <div class="hotel__location flex items-center">
+          <h3 class="hotel-item-location">
+            {{ isRtl ? data.ActionNameAr : data.ActionName }}
+          </h3>
+        </div>
+      </div>
+      <h3 class="hotel-item-location">
+        {{ "TRANSPORT_BOOKING.SEARCH.CATEGORY" | translate }}:
+        {{ isRtl ? data.CategoryNameAr : data.CategoryName }}
+      </h3>
+
+      <div class="hotel__footer flex justify-between items-center">
+        <div class="hotel__footer--details">
+          <h3 class="hotel__price hotel-item-price">
+            {{ data?.Price }} {{ "COMMON.RIAL" | translate }}
+          </h3>
+          <span>{{
+            "TRANSPORT_BOOKING.SEARCH.PRICE_WITH_TAXES" | translate
+          }}</span>
+        </div>
+        <button
+          (click)="navigateToDetails()"
+          class="btn btn-dark btn-16-16 btn-bold btn-almarai"
+        >
+          {{ "SEARCH.BOOK" | translate }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

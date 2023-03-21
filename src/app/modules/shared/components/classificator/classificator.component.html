@@ -1,0 +1,27 @@
+<div class="classificator flex flex-col-reverse">
+  <div class="classificator__card">
+    <div class="main-container">
+      <div class="classificator__header flex justify-center">
+        <h2 class="filter-big-heading">الترتيب حسب</h2>
+        <div class="classificator__closeBtn" (click)="onClose($event)">
+          <i class="icon-clear_black_24dp"></i>
+        </div>
+      </div>
+    </div>
+
+    <div class="classificator__content flex flex-col">
+      <li
+        class="classificator__item filter-main-heading flex justify-between items-center"
+        *ngFor="let item of items; let i = index"
+        [value]="item.value"
+        (click)="activeClass = i; onClose($event)"
+        [ngClass]="{ active: activeClass === i }"
+      >
+        {{ item.value }}
+
+        <i class="icon-check_black_24dp hidden"></i>
+      </li>
+    </div>
+  </div>
+  <div class="classificator__bg" (click)="onClose($event)">&nbsp;</div>
+</div>

@@ -1,0 +1,69 @@
+@import "utilities/variables";
+:host {
+  .pagination {
+    width: 230px;
+    margin: 0 auto;
+
+    &--nextbox {
+      background-color: $color-dark-tint;
+      margin-left: 10px;
+    }
+
+    &--prevbox {
+      margin-right: 10px;
+    }
+
+    &--prevbox,
+    &--nextbox {
+      background-color: $color-dark-tint;
+      color: $color-secondary-tint;
+
+      &.disabled {
+        background-color: #e7e9ec;
+        display: none;
+        i {
+          color: $color-secondary-tint;
+        }
+      }
+    }
+
+    &-first {
+      color: $color-dark-tint !important;
+    }
+
+    &-pages {
+      display: flex;
+
+      justify-content: center;
+      align-items: center;
+
+      &-item {
+        cursor: pointer;
+        height: 30px;
+        width: 30px;
+        color: $color-dark-tint;
+        padding: 5px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-weight: 700;
+
+        &.active {
+          color: $color-primary;
+        }
+      }
+    }
+
+    .box {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 30px;
+      width: 30px;
+      font-size: 12px;
+      font-weight: bold;
+      color: #e7e9ec;
+      cursor: pointer;
+    }
+  }
+}

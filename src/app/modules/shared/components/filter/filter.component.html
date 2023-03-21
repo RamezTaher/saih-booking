@@ -1,0 +1,240 @@
+<div class="filter">
+  <div class="filter__header flex justify-center">
+    <h2 class="filter-big-heading">الفلتر</h2>
+
+    <i
+      (click)="onClose($event)"
+      class="icon-clear_black_24dp filter__closeBtn"
+    ></i>
+  </div>
+  <div class="filter__choices">
+    <h2 class="filter__heading filter-main-heading">تصفية</h2>
+    <div class="filter__nightPrice">
+      <h3 class="filter-heading-1">سعر الليلة</h3>
+      <form class="filter__selection">
+        <div class="form-control">
+          <input
+            class="checkbox"
+            type="checkbox"
+            name="under-200"
+            id="under-200"
+          />
+          <label class="filter-heading-2" for="under-200"
+            >أقل من 200 ريال</label
+          >
+        </div>
+        <div class="form-control">
+          <input class="checkbox" type="checkbox" name="201-400" id="201-400" />
+          <label class="filter-heading-2" for="201-400"
+            >من 201 إلى 400 ريال</label
+          >
+        </div>
+        <div class="form-control">
+          <input class="checkbox" type="checkbox" name="401-600" id="401-600" />
+          <label class="filter-heading-2" for="401-600"
+            >من 401 إلى 600 ريال</label
+          >
+        </div>
+        <div class="form-control">
+          <input class="checkbox" type="checkbox" name="601-800" id="601-800" />
+          <label class="filter-heading-2" for="601-800"
+            >من 601 إلى 800 ريال</label
+          >
+        </div>
+        <div class="form-control">
+          <input
+            class="checkbox"
+            type="checkbox"
+            name="plus-801"
+            id="plus-801"
+          />
+          <label class="filter-heading-2" for="plus-801"
+            >أكثر من 801 ريال</label
+          >
+        </div>
+      </form>
+    </div>
+    <div class="filter__stars">
+      <h3 class="filter-heading-1">تصنيف النجوم</h3>
+      <div class="filter__selection">
+        <div class="filter__boxes flex items-center">
+          <div
+            class="filter__box cursor-pointer"
+            *ngFor="let box of [1, 2, 3, 4, 5]; let idx = index"
+            (click)="activeBox[idx] = !activeBox[idx]"
+            [ngClass]="{ clicked: activeBox[idx] }"
+          >
+            <i class="icon-star"></i>{{ box }}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="filter__distance">
+      <h3 class="filter-heading-1">المسافة</h3>
+      <form class="filter__selection">
+        <div class="form-control">
+          <input
+            class="checkbox"
+            type="checkbox"
+            name="under-1km"
+            id="under-1km"
+          />
+          <label class="filter-heading-2" for="under-1km"
+            >أقل من كيلومتر واحد</label
+          >
+        </div>
+        <div class="form-control">
+          <input
+            class="checkbox"
+            type="checkbox"
+            name="under-3km"
+            id="under-3km"
+          />
+          <label class="filter-heading-2" for="under-3km"
+            >أقل من 3 كيلومتر</label
+          >
+        </div>
+        <div class="form-control">
+          <input
+            class="checkbox"
+            type="checkbox"
+            name="under-5km"
+            id="under-5km"
+          />
+          <label class="filter-heading-2" for="under-5km"
+            >أقل من 5 كيلومتر</label
+          >
+        </div>
+        <div class="form-control">
+          <input
+            class="checkbox"
+            type="checkbox"
+            name="under-10km"
+            id="under-10km"
+          />
+          <label class="filter-heading-2" for="under-10km"
+            >أقل من 10 كيلومتر</label
+          >
+        </div>
+      </form>
+    </div>
+    <div class="filter__meals">
+      <h3 class="filter-heading-1">الوجبات</h3>
+      <form class="filter__selection">
+        <div class="form-control">
+          <input class="checkbox" type="checkbox" name="lun-din" id="lun-din" />
+          <label class="filter-heading-2" for="lun-din">الإفطار والعشاء</label>
+        </div>
+        <div class="form-control">
+          <input
+            class="checkbox"
+            type="checkbox"
+            name="all-incl"
+            id="all-incl"
+          />
+          <label class="filter-heading-2" for="all-incl"
+            >الإفطار والغداء والعشاء</label
+          >
+        </div>
+        <div class="form-control">
+          <input class="checkbox" type="checkbox" name="ram-fas" id="ram-fas" />
+          <label class="filter-heading-2" for="ram-fas">إفطار رمضان</label>
+        </div>
+        <div class="form-control">
+          <input class="checkbox" type="checkbox" name="ram-din" id="ram-din" />
+          <label class="filter-heading-2" for="ram-din">سحور رمضان</label>
+        </div>
+        <div class="form-control">
+          <input class="checkbox" type="checkbox" name="ram-all" id="ram-all" />
+          <label class="filter-heading-2" for="ram-all"
+            >إفطار وسحور رمضان</label
+          >
+        </div>
+        <div class="form-control">
+          <input class="checkbox" type="checkbox" name="asia" id="asia" />
+          <label class="filter-heading-2" for="asia">وجبات شرق آسيا</label>
+        </div>
+      </form>
+    </div>
+    <div class="filter__services">
+      <h3 class="filter-heading-1">وسائل الراحة في الفندق</h3>
+      <form class="filter__selection">
+        <div class="form-control">
+          <input class="checkbox" type="checkbox" name="wifi" id="wifi" />
+          <label class="filter-heading-2" for="wifi">واى فاى مجانى</label>
+        </div>
+        <div class="form-control">
+          <input class="checkbox" type="checkbox" name="parking" id="parking" />
+          <label class="filter-heading-2" for="parking">موقف سيارات</label>
+        </div>
+        <div class="form-control">
+          <input class="checkbox" type="checkbox" name="health" id="health" />
+          <label class="filter-heading-2" for="health">نادي صحي</label>
+        </div>
+        <div class="form-control">
+          <input class="checkbox" type="checkbox" name="spa" id="spa" />
+          <label class="filter-heading-2" for="spa">سبا</label>
+        </div>
+        <div class="form-control">
+          <input class="checkbox" type="checkbox" name="pool" id="pool" />
+          <label class="filter-heading-2" for="pool">مسبح</label>
+        </div>
+        <div class="form-control">
+          <input
+            class="checkbox"
+            type="checkbox"
+            name="baby-sitting"
+            id="baby-sitting"
+          />
+          <label class="filter-heading-2" for="baby-sitting">حضانة أطفال</label>
+        </div>
+        <div class="form-control">
+          <input
+            class="checkbox"
+            type="checkbox"
+            name="handicap"
+            id="handicap"
+          />
+          <label class="filter-heading-2" for="handicap">
+            مرافق الإحتياجات الخاصة</label
+          >
+        </div>
+        <div class="form-control">
+          <input
+            class="checkbox"
+            type="checkbox"
+            name="aeroport"
+            id="aeroport"
+          />
+          <label class="filter-heading-2" for="aeroport"> نقل للمطار</label>
+        </div>
+        <div class="form-control">
+          <input class="checkbox" type="checkbox" name="bus" id="bus" />
+          <label class="filter-heading-2" for="bus"> باصات</label>
+        </div>
+        <div class="form-control">
+          <input
+            class="checkbox"
+            type="checkbox"
+            name="elec-cars"
+            id="elec-cars"
+          />
+          <label class="filter-heading-2" for="elec-cars">
+            محطة شحن السيارات الكهربائية</label
+          >
+        </div>
+        <div class="form-control">
+          <input class="checkbox" type="checkbox" name="cafe" id="cafe" />
+          <label class="filter-heading-2" for="cafe"> مقهى</label>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="filter__cta">
+    <div class="main-container">
+      <button class="btn btn-dark btn-16-16 btn-bold btn-almarai">
+        أظهر نتيجة
+      </button>
+    </div>
+  </div>
+</div>

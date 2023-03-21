@@ -1,0 +1,58 @@
+@import "utilities/mixins";
+@import "utilities/variables";
+
+:host {
+  .contact {
+    color: $color-dark;
+    min-height: 100vh;
+
+    &__container {
+      row-gap: 16px;
+      height: 100%;
+
+      @include respond(xl) {
+        flex-direction: row-reverse;
+      }
+    }
+
+    &__map {
+      width: 100%;
+      height: 100%;
+
+      object-fit: fill;
+      &-box {
+        height: 360px;
+        max-height: 632px;
+
+        @include respond(xl) {
+          flex: 1;
+          height: auto;
+        }
+      }
+    }
+
+    &__textbox {
+      padding-right: 37px;
+      padding-bottom: 100px;
+      row-gap: 32px;
+
+      @include respond(xl) {
+        padding: 52px 138px 0 0;
+        flex: 1;
+      }
+    }
+
+    &__address {
+      row-gap: 16px;
+
+      & > li {
+        display: flex;
+        column-gap: 10px;
+
+        & > i {
+          color: $color-primary;
+        }
+      }
+    }
+  }
+}

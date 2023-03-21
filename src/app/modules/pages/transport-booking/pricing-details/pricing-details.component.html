@@ -1,0 +1,87 @@
+<div class="container">
+  <div *ngIf="!(transportationService.state$ | async)?.loading" class="card">
+    <div>
+      <div class="d-flex">
+        <img
+          [src]="
+            (this.transportationService.state$ | async)?.data?.VehiclePicture
+          "
+          class="vehicle-img"
+          alt="vehicle"
+        />
+      </div>
+      <div>
+        <h2>
+          {{
+            isRtl
+              ? (transportationService.state$ | async)?.data.VehicleNameAr
+              : (transportationService.state$ | async)?.data.VehicleName
+          }}
+        </h2>
+
+        <span>
+          {{ "TRANSPORT_BOOKING.DETAILS.TRACK" | translate }}:
+          {{
+            isRtl
+              ? (transportationService.state$ | async)?.data.ActionNameAr
+              : (transportationService.state$ | async)?.data.ActionName
+          }}
+        </span>
+        <span>
+          {{ "TRANSPORT_BOOKING.DETAILS.CATEGORY" | translate }}:
+          {{
+            isRtl
+              ? (transportationService.state$ | async)?.data.CategoryNameAr
+              : (transportationService.state$ | async)?.data.CategoryName
+          }}
+        </span>
+        <span>
+          {{ "TRANSPORT_BOOKING.DETAILS.RESERVATION_DATE" | translate }}:
+          {{ transportReservationDate | date: "yyyy/MM/dd" }}
+        </span>
+      </div>
+    </div>
+    <div>
+      <span class="price"
+        >{{ (transportationService.state$ | async)?.data.Price }}
+        {{ "TRANSPORT_BOOKING.DETAILS.RIAL" | translate }}</span
+      >
+      <button
+        class="book-btn"
+        [routerLink]="['../../payment', transportPricingId]"
+        queryParamsHandling="preserve"
+        routerLinkActive="router-link-active"
+      >
+        {{ "TRANSPORT_BOOKING.DETAILS.BOOK" | translate }}
+      </button>
+    </div>
+  </div>
+
+  <div class="card terms">
+    <h3>الشروط والأحكام</h3>
+    <p>
+      يقوم العميل بتزويدنا باسماء وارقام الهواتف المحمولة لمندوبيه المتواجدين في
+      المواقع المتفق عليها بين الطرفين هذا وسيقوم المندوبين التابعين للعميل
+      بالمصادقة على نموذج اتمام الخدمة الخاصة بكل حافلة والتى ستتواجد فى الموقع
+      على العميل بعدم الإعلان في الصحف أو إصدار أي إعلانات ورقية للتسويق قبل
+      عرضها علينا واخذ موافقتنا الخطية الصريحة عليها عدم قيام المعتمرين التابعين
+      للعميل بأي أعمال قد تسبب أي ضرر أو تلفيات أو أعمال تخريب للحافلات طيلة مدة
+      تقديم خدمات النقل ويعتبر العميل مسئولا أمامناعن تعويضنا عن أي أضرار أو
+      تلفيات أو أعمال تخريب تلحق بالحافلات والتي يتسبب فيها المعتمرين التابعين
+      له أن يكون المعتمرين التابعين للعميل دخلوا للأراضي السعودية بشكل نظامي
+      وحاملين الوثائق الرسمية التي تؤكد ذلك طوال
+    </p>
+  </div>
+  <!--
+  <div class="card">
+    <h3>سياسة الالغاء</h3>
+    <p>الإلغاء قبل 40 يوم من تاريخ الحجز</p>
+    <p class="color-red">
+      من 20 نوفمبر 2021 إلى 30 ديسمبر 2021 المبلغ المخصوم هو : 2666.67 ر.س
+    </p>
+    <p class="color-red">
+      من 30 ديسمبر 2021 إلى 31 ديسمبر 2021 المبلغ المخصوم هو : 17777.81 ر.س
+    </p>
+  </div>
+  -->
+</div>

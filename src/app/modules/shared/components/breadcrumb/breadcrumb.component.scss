@@ -1,0 +1,32 @@
+@import "utilities/variables";
+@import "utilities/mixins";
+
+:host {
+  .breadcrumb {
+    padding: 5px 0;
+    background-color: $color-secondary-tint;
+    @include shadow-1;
+
+    &-list {
+      display: flex;
+    }
+
+    &-item {
+      font-size: 10px;
+      font-weight: bold;
+      line-height: 19px;
+      color: $color-dark-shade;
+      &.active {
+        color: $color-primary;
+      }
+
+      &:not(:last-child) {
+        &::after {
+          content: "/";
+          margin: 0 5px;
+          color: $color-secondary-shade;
+        }
+      }
+    }
+  }
+}

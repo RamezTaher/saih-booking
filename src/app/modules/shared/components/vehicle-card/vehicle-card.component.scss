@@ -1,0 +1,110 @@
+@import "utilities/variables";
+@import "utilities/mixins";
+:host {
+  .hotel {
+    &__item {
+      background-color: $color-secondary-tint;
+      width: 100%;
+      height: 100%;
+      position: relative;
+      @include shadow-2;
+
+      &-name {
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        width: 280px;
+      }
+    }
+    &__imgbox {
+      height: 180px;
+    }
+    &__img {
+      width: 100%;
+      height: 100%;
+      object-fit: fill;
+    }
+    &__card-love {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      z-index: 2;
+
+      & > i {
+        font-size: 24px;
+        color: $color-danger;
+      }
+    }
+
+    &__details {
+      padding: 10px 16px 16px;
+      width: 100%;
+
+      &-container {
+        row-gap: 5px;
+        @include respond(xl) {
+          row-gap: 8px;
+        }
+      }
+    }
+
+    &__stars {
+      column-gap: 5px;
+      margin: 5px 0;
+
+      @include respond(xl) {
+        column-gap: 3px;
+      }
+    }
+
+    &__star {
+      font-size: 16px;
+      color: $color-primary;
+      @include respond(xl) {
+        font-size: 14px;
+      }
+    }
+
+    &__location {
+      column-gap: 0.2rem;
+      @include respond(desktop) {
+        column-gap: 0.5rem;
+      }
+    }
+
+    &__services {
+      column-gap: 10px;
+      padding: 10px 0;
+      border-top: 1px solid $color-secondary-shade;
+      border-bottom: 1px solid $color-secondary-shade;
+      color: $color-dark;
+      font-size: 22px;
+
+      @include respond(desktop) {
+        border-bottom: 0;
+        padding: 1rem 0 0;
+      }
+    }
+
+    &__footer {
+      border-top: 1px solid #97979729;
+      padding-top: 16px;
+
+      &--details {
+        span {
+          color: #979797;
+          font-size: 10px;
+          font-weight: bold;
+        }
+      }
+
+      button {
+        border-radius: 0px;
+        width: 40%;
+        @include respond(xl) {
+          width: 35%;
+        }
+      }
+    }
+  }
+}

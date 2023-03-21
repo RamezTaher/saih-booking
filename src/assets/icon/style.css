@@ -1,0 +1,130 @@
+@font-face {
+  font-family: "icomoon";
+  src: url("./icomoon.eot?wxj3pc");
+  src: url("./icomoon.eot?wxj3pc#iefix") format("embedded-opentype"),
+    url("./icomoon.ttf?wxj3pc") format("truetype"),
+    url("./icomoon.woff?wxj3pc") format("woff"),
+    url("./icomoon.svg?wxj3pc#icomoon") format("svg");
+  font-weight: normal;
+  font-style: normal;
+  font-display: block;
+}
+
+[class^="icon-"],
+[class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: "icomoon" !important;
+  speak: never;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-local_parking_black_24dp:before {
+  content: "\e900";
+}
+.icon-uniE901:before {
+  content: "\e901";
+}
+.icon-ac_unit_black_24dp:before {
+  content: "\e902";
+}
+.icon-add_black_24dp:before {
+  content: "\e903";
+}
+.icon-arrow_back_black_24dp:before {
+  content: "\e904";
+}
+.icon-arrow_drop_down_black_24dp:before {
+  content: "\e905";
+}
+.icon-balcony:before {
+  content: "\e906";
+}
+.icon-bed:before {
+  content: "\e907";
+}
+.icon-calendar_today_black_24dp:before {
+  content: "\e908";
+}
+.icon-call_black_24dp:before {
+  content: "\e909";
+}
+.icon-check_black_24dp:before {
+  content: "\e90a";
+}
+.icon-check_circle_black_24dp:before {
+  content: "\e90b";
+}
+.icon-check_circle_outline_black_24dp:before {
+  content: "\e90c";
+}
+.icon-chevron_left_black_24dp:before {
+  content: "\e90d";
+}
+.icon-chevron_right_black_24dp:before {
+  content: "\e90e";
+}
+.icon-clear_black_24dp:before {
+  content: "\e90f";
+}
+.icon-email_black_24dp-3:before {
+  content: "\e910";
+}
+.icon-expand_less_black_24dp:before {
+  content: "\e911";
+}
+.icon-expand_more_black_24dp:before {
+  content: "\e912";
+}
+.icon-favorite_black_24dp:before {
+  content: "\e913";
+}
+.icon-filter_alt_black_24dp:before {
+  content: "\e914";
+}
+.icon-lock_black_24dp:before {
+  content: "\e915";
+}
+.icon-menu_black_24dp:before {
+  content: "\e916";
+}
+.icon-person_black_24dp:before {
+  content: "\e917";
+}
+.icon-place_black_24dp:before {
+  content: "\e918";
+}
+.icon-remove_black_24dp:before {
+  content: "\e919";
+}
+.icon-room_service_black_24dp:before {
+  content: "\e91a";
+}
+.icon-search_black_24dp:before {
+  content: "\e91b";
+}
+.icon-shower_black_24dp:before {
+  content: "\e91c";
+}
+.icon-star:before {
+  content: "\e91d";
+}
+.icon-visibility_black_24dp:before {
+  content: "\e91e";
+}
+.icon-visibility_off_black_24dp:before {
+  content: "\e91f";
+}
+.icon-wifi_black_24dp:before {
+  content: "\e920";
+}
+.icon-XMLID_95:before {
+  content: "\e921";
+}

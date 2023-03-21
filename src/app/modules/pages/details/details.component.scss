@@ -1,0 +1,466 @@
+@import "utilities/variables";
+@import "utilities/mixins";
+
+:host {
+  .details {
+    padding-bottom: 100px;
+    min-height: 100vh;
+    @include respond(xl) {
+      background-color: $color-secondary;
+    }
+    app-breadcrumb {
+      display: none;
+      @include respond(xl) {
+        display: block;
+      }
+    }
+
+    &__all {
+      @include respond(xl) {
+        padding: 32px 138px 150px;
+        background-color: $color-secondary;
+      }
+    }
+
+    &__container {
+      @include respond(xl) {
+        background-color: $color-secondary-tint;
+        margin-bottom: 32px;
+        @include shadow-2;
+      }
+    }
+
+    &__header {
+      padding: 17px 16px;
+      @include respond(xl) {
+        display: flex;
+        justify-content: space-between;
+      }
+    }
+
+    &__hotel {
+      flex: 1;
+      &--name {
+        @include respond(xl) {
+          display: flex;
+          column-gap: 10px;
+        }
+
+        .hotel-item-name {
+          @include respond(xl) {
+            font-size: 24px;
+            line-height: 45px;
+          }
+        }
+      }
+
+      &--stars {
+        color: $color-primary;
+        column-gap: 3px;
+        & > i {
+          font-size: 16px;
+        }
+      }
+
+      &--location {
+        column-gap: 5px;
+        & > i {
+          display: none;
+          @include respond(xl) {
+            display: block;
+          }
+        }
+      }
+    }
+
+    &__show {
+      display: none;
+      @include respond(xl) {
+        display: flex;
+        column-gap: 18px;
+        align-items: center;
+        width: 20%;
+      }
+
+      & > i {
+        color: $color-danger;
+        font-size: 24px;
+      }
+    }
+
+    /****/
+
+    &__carousal {
+      position: relative;
+      @include respond(xl) {
+        display: none;
+      }
+
+      &--track {
+        height: 200px;
+        & > img {
+          height: 100%;
+          width: 100%;
+          object-fit: fill;
+        }
+      }
+      button {
+        width: 48px;
+        height: 40px;
+        background-color: rgba(#000, 0.7);
+        color: $color-secondary-tint;
+        font-size: 16px;
+      }
+      &--prev {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        transform: translate(0, -50%);
+      }
+      &--next {
+        position: absolute;
+        top: 50%;
+        right: 0;
+        transform: translate(0, -50%) rotate(180deg);
+      }
+
+      &--dots {
+        column-gap: 8px;
+        position: absolute;
+        bottom: 10px;
+        left: 50%;
+        transform: translate(-50%, 0);
+        z-index: 10;
+      }
+
+      &--dot {
+        height: 8px;
+        width: 8px;
+        border-radius: 50%;
+        background-color: $color-secondary-tint;
+      }
+    }
+
+    /*********  IMG *********/
+
+    &__imgs {
+      display: none;
+
+      @include respond(xl) {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        grid-template-rows: repeat(3, 183px);
+        grid-gap: 16px;
+      }
+    }
+
+    &__img {
+      width: 100%;
+      height: 100%;
+      object-fit: fill;
+      &-1 {
+        grid-column: 1 / 3;
+        grid-row: 1 / 3;
+      }
+      &-map {
+        grid-column: 3 / 4;
+        grid-row: 1 / 3;
+      }
+      &-2 {
+        grid-column: 1 / 2;
+        grid-row: 3 / 4;
+      }
+      &-3 {
+        grid-column: 2 / 3;
+        grid-row: 3 / 4;
+      }
+      &-4 {
+        grid-column: 3 / 4;
+        grid-row: 3 / 4;
+
+        position: relative;
+        &::before {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background-color: rgba($color-dark, 0.5);
+        }
+      }
+
+      &-last {
+        color: $color-secondary-tint;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        font-size: 24px;
+        font-weight: bold;
+        line-height: 45px;
+      }
+    }
+
+    /*********  DESCRIPTION *********/
+
+    &__description {
+      padding: 32px 37px;
+      background-color: $color-secondary-tint;
+      @include shadow-2;
+      margin-bottom: 32px;
+      row-gap: 16px;
+      @include respond(xl) {
+        padding: 16px;
+        row-gap: 11px;
+      }
+
+      p {
+        @include respond(xl) {
+          row-gap: 30px;
+        }
+        &.hide {
+          max-height: 160px;
+          overflow: hidden;
+          @include respond(xl) {
+            max-height: 160px;
+          }
+        }
+        &.show {
+          max-height: auto;
+          overflow: visible;
+        }
+      }
+
+      &--show-more {
+        text-decoration: underline;
+        text-align: center;
+      }
+    }
+
+    /*  PICKER */
+
+    &__picker {
+      @include shadow-2;
+      margin-bottom: 16px;
+    }
+
+    /* ROOM */
+
+    &__room-container {
+      padding: 0 37px;
+      @include respond(xl) {
+        padding: 0;
+      }
+    }
+
+    .room {
+      @include respond(xl) {
+        @include shadow-2;
+      }
+      &__table {
+        @include respond(xl) {
+          border-radius: 8px;
+          background-color: $color-secondary-tint;
+        }
+
+        &--container {
+          
+          @include respond(xl) {
+            padding: 20px;
+            background-color: $color-secondary-tint;
+          }
+        }
+        &--row {
+          display: none;
+          @include respond(xl) {
+            display: flex;
+            font-size: 16px;
+            line-height: 30px;
+            font-weight: bold;
+            color: $color-dark-tint;
+            text-align: center;
+            overflow: hidden;
+          }
+          & > * {
+            border-top: 1px solid $color-dark-shade;
+            border-bottom: 1px solid $color-dark-shade;
+            border-left: 1px solid $color-dark-shade;
+          }
+        }
+
+        &--item {
+          width: 100%;
+          display: flex;
+          flex-direction: column;
+          row-gap: 16px;
+          background-color: $color-secondary;
+
+          @include respond(xl) {
+            flex: 7;
+            row-gap: 0;
+          }
+        }
+
+        &--btn {
+          display: none;
+          @include respond(xl) {
+            display: block;
+            flex: 3;
+            border-bottom: 1px solid $color-dark-shade;
+            border-left: 1px solid $color-dark-shade;
+          }
+        }
+
+        &--cell {
+          padding: 8px 16px;
+        }
+
+        &--info {
+          flex: 2;
+          border-right: 1px solid $color-dark-shade;
+        }
+        &--choice {
+          flex: 3;
+        }
+        &--price {
+          flex: 2;
+        }
+        &--sum {
+          flex: 3;
+        }
+      }
+      &__items {
+        padding: 37px;
+      }
+      &__price {
+        display: block;
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        padding: 10px 37px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background-color: $color-secondary-tint;
+        @include shadow-3;
+        @include respond(xl) {
+          display: none;
+          position: static;
+          padding: 16px;
+          margin: 0 0 8px 0;
+          flex-direction: column;
+          align-items: flex-start;
+          row-gap: 5px;
+          box-shadow: none;
+        }
+
+        &.pc {
+          display: none;
+
+          @include respond(xl) {
+            display: flex;
+            padding: 16px;
+            row-gap: 16px;
+          }
+        }
+
+        &--cta {
+          width: 50%;
+          @include respond(xl) {
+            width: 100%;
+          }
+
+          button {
+            padding: 15px;
+          }
+        }
+      }
+    }
+
+    .description {
+      &__card {
+        background-color: $color-secondary-tint;
+        padding: 33px 37px;
+        margin-top: 32px;
+        @include respond(xl) {
+          padding: 20px;
+          @include shadow-2;
+        }
+      }
+
+      &__heading {
+        margin-bottom: 32px;
+      }
+
+      &__items {
+        display: flex;
+        flex-direction: column;
+        row-gap: 32px;
+        @include respond(xl) {
+          row-gap: 24px;
+        }
+      }
+      &__s1,
+      &__s2,
+      &__s3 {
+        &--items {
+          display: grid;
+          grid-template-columns: repeat(4, minmax(0, 1fr));
+          :nth-child(4n + 1) {
+            grid-column: 1 / 3;
+            @include respond(xl) {
+              grid-column: 1 / 2;
+            }
+          }
+          :nth-child(4n + 2) {
+            grid-column: 3 / 5;
+            @include respond(xl) {
+              grid-column: 2 / 3;
+            }
+          }
+          :nth-child(4n + 3) {
+            grid-column: 1 / 3;
+            @include respond(xl) {
+              grid-column: 3 / 4;
+            }
+          }
+          :nth-child(4n + 4) {
+            grid-column: 3 / 5;
+            @include respond(xl) {
+              grid-column: 4 / 5;
+            }
+          }
+
+          &.show {
+            max-height: auto;
+            overflow: visible;
+          }
+          &.hide {
+            max-height: 40px;
+            overflow: hidden;
+          }
+        }
+        &--item {
+          i {
+            margin-left: 0.5rem;
+            color: $color-primary;
+            font-weight: 500;
+          }
+        }
+        &--title {
+          margin-bottom: 12px;
+        }
+      }
+
+      &__show-more {
+        color: $color-primary;
+        font-size: 12px;
+        font-weight: 500;
+        line-height: 23px;
+        text-decoration: underline;
+      }
+    }
+  }
+}

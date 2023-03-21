@@ -1,0 +1,141 @@
+@import "utilities/variables";
+@import "utilities/mixins";
+
+:host {
+  h3 {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    column-gap: 7px;
+  }
+
+  i {
+    color: $color-primary;
+  }
+  .choice {
+    &__change {
+      background-color: $color-secondary-tint;
+    }
+
+    &__card {
+      background-color: $color-secondary-tint;
+      @include respond(xl) {
+        flex-direction: row;
+        padding: 0;
+      }
+
+      & > *:not(:last-child) {
+        @include respond(xl) {
+          padding-bottom: 10px;
+        }
+      }
+    }
+
+    &__directions {
+      flex: 1;
+      padding: 16px;
+
+      border-bottom: 1px solid $color-secondary-shade;
+
+      @include respond(xl) {
+        position: relative;
+        border-left: 1px solid $color-secondary-shade;
+      }
+
+      &.in-search {
+        display: none;
+      }
+    }
+
+    &__code {
+      border-bottom: 1px solid $color-secondary-shade;
+      padding: 16px;
+
+      @include respond(xl) {
+        flex: 1;
+        border-bottom: 0;
+      }
+    }
+    &__cta {
+      color: $color-secondary-tint;
+      padding: 16px;
+
+      @include respond(xl) {
+        display: flex;
+        align-items: center;
+      }
+
+      button {
+        @include respond(xl) {
+          height: 67px;
+          width: 67px;
+        }
+
+        & > div {
+          @include respond(xl) {
+            display: none;
+          }
+        }
+      }
+    }
+
+    &__bg {
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.7);
+      z-index: 10;
+      @include respond(xl) {
+        display: none;
+      }
+    }
+  }
+
+  app-date-picker {
+    border-bottom: 1px solid $color-secondary-shade;
+    padding: 16px;
+
+    @include respond(xl) {
+      flex: 2;
+      border-left: 1px solid $color-secondary-shade;
+      border-bottom: 0;
+    }
+  }
+
+  .chevron {
+    @include respond(xl) {
+      display: block;
+    }
+
+    &.directions-open {
+      transform: rotate(180deg);
+    }
+  }
+
+  .mobile {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: $color-secondary-tint;
+    z-index: 100000;
+    @include respond(xl) {
+      display: none;
+    }
+  }
+
+  .desktop {
+    display: none;
+    @include respond(xl) {
+      display: block;
+      position: absolute;
+      top: 110%;
+      left: 0;
+      right: 0;
+    }
+  }
+}
+
+.text-gray {
+  color: $color-gray;
+}

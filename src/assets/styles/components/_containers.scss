@@ -1,0 +1,6 @@
+.main-container {
+  padding: 0 37px;
+  @include respond(lg) {
+    padding: 0 140px;
+  }
+}

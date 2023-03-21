@@ -1,0 +1,51 @@
+@import "utilities/variables";
+@import "utilities/mixins";
+
+:host {
+  .terms {
+    padding: 40px 37px;
+
+    h1 {
+      font-size: 16px;
+      font-weight: bold;
+      color: $color-dark;
+      @include respond(xl) {
+        font-size: 24px;
+      }
+    }
+    .container {
+      display: flex;
+      flex-direction: column;
+      row-gap: 20px;
+
+      & > div {
+        display: flex;
+        flex-direction: column;
+        row-gap: 6px;
+
+        & > h2 {
+          font-size: 14px;
+          font-weight: bold;
+          color: $color-dark;
+          @include respond(xl) {
+            font-size: 16px;
+          }
+        }
+        & > p {
+          font-size: 12px;
+          @include respond(xl) {
+            font-size: 14px;
+          }
+        }
+
+        & > li {
+          list-style-type: disc;
+          font-size: 12px;
+          @include respond(xl) {
+            font-size: 14px;
+          }
+        }
+      }
+    }
+  }
+}

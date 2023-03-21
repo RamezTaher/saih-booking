@@ -1,0 +1,7 @@
+<div class="hotel__stars flex">
+  <i
+    *ngFor="let item of [].constructor(5); let i = index"
+    class="hotel__star icon-star"
+    [ngClass]="{ active: i < stars }"
+  ></i>
+</div>

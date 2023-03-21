@@ -1,0 +1,118 @@
+<div [formGroup]="user_form">
+  <div class="main">
+    <h1>{{ "AUTH.UserInformations" | translate }}</h1>
+
+    <div class="form">
+      <div class="row m-0">
+        <div class="col-12 col-md">
+          <div class="form-groupe">
+            <label>{{ "AUTH.FirstName" | translate }}</label>
+            <input
+              formControlName="FirstName"
+              name="FirstName"
+              type="text"
+              class="form-controle"
+            />
+            <div
+              class="app-messages error"
+              *ngIf="
+                user_form.controls['FirstName'].touched &&
+                user_form.controls['FirstName'].invalid
+              "
+            >
+              {{ "Validation.Required" | translate }}
+            </div>
+          </div>
+        </div>
+        <div class="col-12 col-md">
+          <div class="form-groupe">
+            <label>{{ "AUTH.LastName" | translate }}</label>
+            <input
+              formControlName="LastName"
+              name="LastName"
+              type="text"
+              class="form-controle"
+            />
+            <div
+              class="app-messages error"
+              *ngIf="
+                user_form.controls['LastName'].touched &&
+                user_form.controls['LastName'].invalid
+              "
+            >
+              {{ "Validation.Required" | translate }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form">
+      <div class="row m-0">
+        <div class="col-12 col-md form-groupe">
+          <label>{{ "AUTH.Email" | translate }}</label>
+          <input
+            formControlName="Email"
+            name="Email"
+            [disabled]="true"
+            type="text"
+            class="form-controle"
+          />
+          <div
+            class="app-messages error"
+            *ngIf="
+              user_form.controls['Email'].touched &&
+              user_form.controls['Email'].invalid
+            "
+          >
+            {{ "Validation.Pattern" | translate }}
+          </div>
+        </div>
+
+        <div class="col-12 col-md row">
+          <div class="col-10 form-groupe">
+            <label>{{ "AUTH.Phone" | translate }}</label>
+            <input
+              formControlName="Phone"
+              name="Phone"
+              [disabled]="true"
+              type="text"
+              class="form-controle"
+            />
+            <div
+              class="app-messages error"
+              *ngIf="
+                user_form.controls['Phone'].touched &&
+                user_form.controls['Phone'].invalid
+              "
+            >
+              {{ "Validation.Required" | translate }}
+            </div>
+          </div>
+          <div class="col-2">
+            <label class="top-offset">&nbsp;</label>
+            <select class="select text-right" type="text">
+              <option><bdi>966</bdi></option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col text-left">
+      <button (click)="save()" class="btn btn-primary btn-rectangle">
+        {{ "BUTTONS.Save" | translate }}
+      </button>
+    </div>
+  </div>
+  <app-http-error-message
+    [errorObject]="(putService.state$ | async)?.error && user_form.valid"
+  ></app-http-error-message>
+  <div
+    class="form-group"
+    *ngIf="(putService.state$ | async)?.success && user_form.valid"
+  >
+    <div class="form-success app-messages success">
+      <h5>{{ "MESSAGES.UPDATE_SUCCEED" | translate }}</h5>
+    </div>
+  </div>
+</div>

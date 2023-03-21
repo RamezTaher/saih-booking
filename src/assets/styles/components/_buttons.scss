@@ -1,0 +1,99 @@
+.btn {
+  &,
+  &:link,
+  &:visited {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    font-family: inherit;
+    width: 100%;
+    cursor: pointer !important;
+  }
+
+  &-primary {
+    background-color: $color-primary;
+    color: $color-secondary-tint;
+  }
+
+  &-secondary-shade-border {
+    &-primary {
+      background-color: $color-secondary-shade;
+      color: $color-primary;
+      border: 1px solid $color-primary;
+    }
+    &-dark {
+      background-color: $color-secondary;
+      color: $color-dark;
+      border: 1px solid $color-dark-tint;
+    }
+  }
+
+  &-secondary-tint {
+    background-color: $color-secondary-tint;
+    color: $color-dark-tint;
+
+    &-border {
+      background-color: $color-secondary-tint;
+      color: $color-dark-tint;
+      border: 1px solid $color-dark-tint;
+    }
+
+    &-primary {
+      background-color: $color-secondary-tint;
+      color: $color-primary;
+    }
+  }
+
+  &-dark {
+    background-color: $color-dark-tint;
+    color: $color-secondary-tint;
+    &-dark {
+      background-color: $color-dark;
+      color: $color-secondary-tint;
+    }
+  }
+  &-12-12 {
+    font-size: 12px;
+    line-height: 23px;
+    padding: 11px 0;
+  }
+
+  &-16-16 {
+    font-size: 16px;
+    line-height: 17px;
+    padding: 11px 0;
+  }
+
+  &-12-16 {
+    font-size: 12px;
+    line-height: 23px;
+    padding: 11px 0;
+    @include respond(xl) {
+      font-size: 16px;
+      line-height: 17px;
+      padding: 17px 0;
+    }
+  }
+
+  &-24-24 {
+    font-size: 24px;
+    line-height: 45px;
+    padding: 10px 0;
+  }
+
+  &-24-24 {
+    font-size: 24px;
+    font-weight: bold;
+    line-height: 45px;
+    padding: 4px 0;
+  }
+
+  &-bold {
+    font-weight: bold;
+  }
+
+  &-almarai {
+    font-family: "Almarai", sans-serif;
+  }
+}

@@ -1,0 +1,52 @@
+@import "utilities/variables";
+@import "utilities/mixins";
+
+:host {
+  .classificator {
+    color: $color-dark;
+    height: 100%;
+    overscroll-behavior-y: contain;
+
+    &__card {
+      background-color: $color-secondary-tint;
+      height: 250px;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 11001;
+    }
+    &__header {
+      padding: 15px 0;
+      margin-bottom: 15px;
+      border-bottom: 1px solid $color-secondary-shade;
+      position: relative;
+    }
+    &__closeBtn {
+      position: absolute;
+      left: 0;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    &__content {
+      row-gap: 10px;
+    }
+
+    &__item {
+      padding: 8px 37px;
+      line-height: 30px;
+
+      &.active {
+        background-color: $color-secondary-shade;
+        color: $color-primary;
+        & > i {
+          display: block;
+        }
+      }
+    }
+    &__bg {
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.7);
+    }
+  }
+}

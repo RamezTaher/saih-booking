@@ -1,0 +1,415 @@
+.primary {
+  color: $color-primary !important;
+}
+
+.white {
+  color: $color-secondary-tint !important;
+}
+
+/*  HEADER  */
+
+.header-heading {
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 37px;
+  color: $color-dark;
+  @include respond(lg) {
+    font-size: 16px;
+    line-height: 30px;
+  }
+}
+
+/*  HOME  */
+
+.home {
+  &-big-heading {
+    font-size: 36px;
+    font-weight: 900;
+    line-height: 68px;
+    color: $color-dark-tint;
+    @include respond(lg) {
+      font-size: 60px;
+      line-height: 90px;
+    }
+  }
+
+  &-main-heading {
+    font-size: 24px;
+    font-weight: bold;
+    line-height: 45px;
+    color: $color-dark;
+  }
+
+  &-heading {
+    &-1 {
+      font-size: 16px;
+      line-height: 30px;
+      font-weight: normal;
+    }
+
+    &-2 {
+      font-size: 12px;
+      font-weight: 500;
+      line-height: 23px;
+    }
+  }
+}
+
+.transport-booking {
+  &-big-heading {
+    font-size: 36px;
+    font-weight: 900;
+    line-height: 68px;
+    color: $color-dark-tint;
+    @include respond(lg) {
+      font-size: 60px;
+      line-height: 90px;
+    }
+  }
+
+  &-main-heading {
+    font-size: 24px;
+    font-weight: bold;
+    line-height: 45px;
+    color: $color-dark;
+  }
+
+  &-heading {
+    &-1 {
+      font-size: 16px;
+      line-height: 30px;
+      font-weight: normal;
+    }
+
+    &-2 {
+      font-size: 12px;
+      font-weight: 500;
+      line-height: 23px;
+    }
+  }
+}
+
+
+/*  PICKER  */
+.picker {
+  &-1 {
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 23px;
+    color: $color-dark-shade;
+    @include respond(lg) {
+      font-size: 16px;
+      font-weight: normal;
+      line-height: 30px;
+    }
+  }
+  &-2 {
+    font-size: 16px;
+    font-weight: normal;
+    line-height: 30px;
+    color: $color-dark;
+    @include respond(lg) {
+      font-size: 20px;
+      font-weight: 500;
+      line-height: 37px;
+    }
+  }
+}
+/*  FILTER CLASS DIRECTIONS  */
+.pop {
+  &-big-heading {
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 37px;
+    color: $color-dark;
+  }
+
+  &-main-heading {
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 17px;
+    color: $color-dark;
+  }
+
+  &-heading {
+    &-1 {
+      font-size: 12px;
+      font-weight: bold;
+      line-height: 23px;
+      color: $color-dark;
+    }
+    &-2 {
+      font-size: 12px;
+      font-weight: 500;
+      line-height: 23px;
+      color: $color-dark;
+    }
+    &-3 {
+      font-size: 16px;
+      font-weight: normal;
+      line-height: 30px;
+      color: $color-dark;
+    }
+  }
+}
+
+/*   HOTEL ITEM   */
+.hotel-item {
+  &-name {
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 30px;
+    color: $color-dark;
+  }
+  &-location {
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 23px;
+    color: $color-dark-shade;
+  }
+  &-price {
+    font-size: 24px;
+    font-weight: bold;
+    line-height: 19px;
+    color: $color-primary;
+  }
+
+  &-period {
+    font-size: 10px;
+    font-weight: bold;
+    line-height: 19px;
+    color: $color-dark-shade;
+  }
+
+  &-type-date {
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 23px;
+    color: $color-dark-shade;
+  }
+
+  &-sum {
+    font-size: 10px;
+    font-weight: bold;
+    line-height: 19px;
+    color: $color-dark-tint;
+  }
+
+  &-room-type {
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 30px;
+    color: $color-dark;
+    @include respond(xl) {
+      font-size: 14px;
+      line-height: 26px;
+    }
+  }
+  &-room-service {
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 26px;
+    color: $color-dark;
+    @include respond(xl) {
+      font-size: 12px;
+      font-weight: 500;
+      line-height: 23px;
+    }
+  }
+}
+
+/*  FILTER CLASS  */
+.filter {
+  &-big-heading {
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 37px;
+  }
+  &-main-heading {
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 17px;
+  }
+  &-heading {
+    &-1 {
+      font-size: 12px;
+      font-weight: bold;
+      line-height: 23px;
+    }
+    &-2 {
+      font-size: 12px;
+      font-weight: 500;
+      line-height: 23px;
+    }
+  }
+}
+
+/*  CONTACT US   */
+
+.contact {
+  &-big-heading {
+    font-size: 36px;
+    font-weight: bold;
+    line-height: 68px;
+
+    @include respond(xl) {
+      font-size: 60px;
+      line-height: 90px;
+    }
+  }
+
+  &-heading {
+    &-1 {
+      font-size: 16px;
+      font-weight: normal;
+      line-height: 30px;
+    }
+
+    &-2 {
+      font-size: 20px;
+      font-weight: 500;
+      line-height: 37px;
+      color: $color-dark-shade;
+    }
+  }
+}
+
+/*DETAILS*/
+
+.details {
+  &-main-heading {
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 26px;
+    color: $color-dark;
+    @include respond(xl) {
+      font-size: 16px;
+      line-height: 30px;
+    }
+  }
+  &-heading-1 {
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 23px;
+    color: $color-dark;
+  }
+  &-heading-2 {
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 23px;
+    color: $color-dark;
+  }
+
+  &-text-1 {
+    font-size: 14px;
+    line-height: 26px;
+    font-weight: 400;
+    color: $color-dark;
+  }
+
+  &-item {
+    font-size: 12px;
+    line-height: 26px;
+    font-weight: 500;
+  }
+}
+
+/* BOOKING */
+
+.book {
+  &-main-heading {
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 30px;
+    color: $color-dark;
+  }
+  &-heading-1 {
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 26px;
+    color: $color-dark;
+  }
+  &-heading-2 {
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 26px;
+    color: $color-dark-shade;
+  }
+  &-heading-3 {
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 26px;
+    color: $color-dark-shade;
+  }
+  &-heading-4 {
+    font-size: 12px;
+    font-weight: bold;
+    line-height: 26px;
+    color: $color-dark;
+  }
+  &-sum {
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 37px;
+    color: $color-dark;
+  }
+  &-danger {
+    font-size: 10px;
+    font-weight: bold;
+    line-height: 19px;
+    color: $color-danger;
+  }
+  &-done {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 30px;
+    text-align: center;
+    color: $color-dark;
+    @include respond(xl) {
+      font-size: 20px;
+    }
+  }
+}
+
+/*  AUTH  */
+.auth {
+  &-main-heading {
+    font-size: 24px;
+    font-weight: bold;
+    line-height: 45px;
+    color: $color-dark;
+  }
+  &-heading-1 {
+    font-size: 16px;
+    font-weight: bold;
+    line-height: 17px;
+    color: $color-dark;
+  }
+  &-heading-2 {
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 26px;
+    color: $color-dark;
+    @include respond(xl) {
+      font-size: 12px;
+      line-height: 23px;
+    }
+  }
+  &-text {
+    font-size: 10px;
+    font-weight: bold;
+    line-height: 19px;
+    color: $color-dark;
+  }
+}
+
+/* FOOTER */
+
+.footer {
+  &-heading {
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 23px;
+    color: $color-secondary-tint;
+  }
+}

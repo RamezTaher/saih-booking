@@ -1,0 +1,166 @@
+<div class="page">
+  <div class="res-success">
+    <i class="icon-check_circle_outline_black_24dp"></i>
+    <div>{{ "MESSAGES.PAYMENT_SUCCEED" | translate }}</div>
+  </div>
+
+  <div class="page__container grid">
+    <div class="room__item">
+      <img [src]="hotel.DefaultPicture" class="room__img" alt="room" />
+
+      <div class="room__details">
+        <div class="room__hotel">
+          <div class="room__hotel--header">
+            <h2 class="hotel-item-name">
+              {{ hotel?.NameAr ?? hotel?.Name }}
+            </h2>
+            <app-box-stars [stars]="hotel.Stars"></app-box-stars>
+          </div>
+          <div class="room__location flex items-center">
+            <i class="icon-place_black_24dp"></i>
+            <h3 class="hotel-item-type-date">
+              {{ hotel.AdressAr ?? hotel.Adress }}
+            </h3>
+          </div>
+        </div>
+        <div class="room__info" *ngFor="let item of rooms">
+          <h4 class="hotel-item-room-type">
+            {{ item.Quantity }}
+            {{ item.RoomTypeNameAr ?? item.RoomTypeName }}
+          </h4>
+          <ul class="room__options--list flex flex-wrap">
+            <li class="room__options--item hotel-item-room-service">
+              <i class="icon-XMLID_95"></i> {{ item.MealAr ?? item.Meal }}
+            </li>
+            <li class="room__options--item hotel-item-room-service">
+              <i class="icon-balcony"></i>
+              {{ item.ViewNameAr ?? item.ViewName }}
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="booking__info">
+      <h4 class="book-main-heading">{{ "PAYMENT.BOOKINOS" | translate }}</h4>
+      <ul class="booking__price flex flex-col">
+        <li class="booking__item">
+          <h4 class="book-heading-2">
+            {{ getRoomsNumbers() }} غرف × {{ this.rooms[0].NbrNights }} ليالي
+          </h4>
+          <h4 class="book-heading-1">
+            {{ total_without_vat.toFixed(2) }} ريال
+          </h4>
+        </li>
+        <li class="booking__item">
+          <h4 class="book-heading-2">ضريبة القيمة المضافة</h4>
+          <h4 class="book-heading-1">{{ total_vat.toFixed(2) }} ريال</h4>
+        </li>
+      </ul>
+      <div class="booking__sum flex items-center justify-between">
+        <h2 class="book-sum">{{ "INFOPAY.SUM" | translate }}</h2>
+        <h3 class="hotel-item-price">{{ total_price.toFixed(2) }} ريال</h3>
+      </div>
+    </div>
+
+    <div class="user-info">
+      <h2 class="book-main-heading info__heading">
+        {{ "PAYMENT.GUEST_INFO" | translate }}
+      </h2>
+
+      <div class="user-info-data">
+        <div>{{ storageService.guest.FirstName }}</div>
+        <div>{{ storageService.guest.LastName }}</div>
+        <div>{{ storageService.guest.Email }}</div>
+        <div>{{ storageService.guest.Phone }}</div>
+      </div>
+    </div>
+
+    <div class="feedback">
+      <h4 class="book-main-heading feedback__heading">
+        {{ "INFOPAY.DEMANDES" | translate }}
+      </h4>
+
+      <div>{{ storageService.guest.Notes }}</div>
+      <div *ngIf="!storageService.guest.Notes">
+        {{ "MESSAGES.NO_NOTES" | translate }}
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 
+<div class="container">
+  <div class="mt-md-4 row justify-content-center box">
+    <div class="col-100 col-xl-8">
+      <h3  *ngIf="payment_type == 'transfer'"  class="title text-center">لقد تم الحجز بنجاح</h3>
+    </div>
+    <div class="col-100 col-xl-10">
+      <p *ngIf="payment_type == 'transfer'"  class="second-title text-center">
+      لقد تم ارسال الحجز بنجاح ستصلك رسالة على البريد الالكتروني
+      </p>
+      <div *ngIf="payment_type !== 'transfer'" >
+        <p  class="title text-center" *ngIf="payment_verified" >لقد تم الحجز والدفع الالكتروني بنجاح ,ستصلك رسالة تأكيد بالبريد الإلكترونى.</p>
+        <p   class="title text-center" *ngIf="!payment_verified" >لقد تم الحجز بنجاح لكن هناك اشكال في الدفع الالكتروني الرجاء الاتصال بالادارة لاتمام عملية الدفع</p>
+      </div>
+    </div>
+    <div class="reservation col-100 col-xl-10">
+      <span class="hotel-title">{{translate.currentLang =='ar'? hotel?.NameAr :
+        hotel?.Name}}</span>
+        <div class="room-details">
+          <div class=" rooms-reservation">
+
+              <div *ngFor="let item of rooms;let i=index" class="room-content">
+
+                  <span class="box-room-number">
+                    رقم الغرفة  {{i+1}} :
+
+                  </span>
+                  <span class="box-second-title">
+                    {{translate.currentLang =='ar'? item.RoomTypeNameAr : item.RoomTypeName}}
+                  </span>
+
+                <div class="benefits d-flex flex-column">
+                  <div class="mt-2">
+                    {{translate.currentLang =='ar'? item.ViewNameAr : item.ViewName}}
+                  </div>
+                  <div class="mt-2" >
+                    {{translate.currentLang =='ar'? item.MealAr : item.Meal}}
+
+                  </div>
+                </div>
+              </div>
+            </div>
+      <div class="reservation-date">
+
+            <div class="date">
+              <span class="header-text">
+
+                الدخول
+              </span>
+              <span class="date-title">
+                {{rooms[0]?.CheckIn| date : 'dd-MM-yyyy'}}
+              </span>
+            </div>
+            <div class="date">
+              <span class="header-text">
+               المغادرة
+              </span>
+
+              <span class="date-title mr-3">
+                {{rooms[0]?.CheckOut| date : 'dd-MM-yyyy'}}
+              </span>
+          </div>
+
+      </div>
+        </div>
+
+    </div>
+    <div  *ngIf="payment_type === 'transfer'" class="col-12 text-center"> الرجاء ارفاق صورة التحويل البنكي من خلال الرابط التالي
+      <a target="_blank" [href]="url_share_booking">  اضغط هنا</a>
+    </div>
+    <hr class="col-12 pr-0 pl-0 pt-2 pb-1 hide-mobile"/>
+    <div class="col-12 pb-3 text-center btn btn-succ" [routerLink]="['/']">     {{ 'CHECKOUT.BackToHomePage' | translate }}  </div>
+  </div>
+
+</div> -->

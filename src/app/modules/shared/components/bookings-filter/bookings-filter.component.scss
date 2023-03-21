@@ -1,0 +1,45 @@
+@import "utilities/variables";
+@import "utilities/mixins";
+
+:host {
+  .filters {
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 15px;
+    align-items: stretch;
+    > * {
+      grid-column: span 6 / span 6;
+      @include respond(xl) {
+        grid-column: span 1 / span 1;
+      }
+    }
+
+    .input-form {
+      padding: 9px 12px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      border: 0.5px solid $color-primary;
+      &:nth-child(1) {
+        grid-column: span 2 / span 2;
+      }
+      > i {
+        transition: all 0.09s ease-in;
+        &.opened {
+          color: $color-primary;
+          transform: rotate(180deg);
+        }
+      }
+
+      input {
+        width: 100%;
+
+        &::placeholder {
+          font-size: 12px;
+          font-weight: 500px;
+          color: $color-dark-shade;
+        }
+      }
+    }
+  }
+}

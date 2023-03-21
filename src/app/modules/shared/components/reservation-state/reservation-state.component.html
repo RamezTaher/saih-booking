@@ -1,0 +1,10 @@
+<div
+  class="state"
+  [ngClass]="{
+    warning: type === 'warning',
+    danger: type === 'error',
+    success: type === 'success'
+  }"
+>
+  {{ text }}
+</div>

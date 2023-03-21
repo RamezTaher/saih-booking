@@ -1,0 +1,100 @@
+@import "utilities/variables";
+@import "utilities/mixins";
+
+:host {
+  .signin {
+    @include respond(xl) {
+      padding: 0;
+      width: 356px;
+    }
+
+    &__card {
+      background-color: $color-secondary-tint;
+      padding: 16px 37px;
+
+      @include respond(xl) {
+        padding: 16px;
+      }
+    }
+
+    &__header {
+      margin-bottom: 32px;
+    }
+
+    &__close {
+      display: none;
+      @include respond(xl) {
+        display: block;
+      }
+    }
+
+    &__form {
+      margin-bottom: 30px;
+      form {
+        display: flex;
+        flex-direction: column;
+        row-gap: 16px;
+        margin-bottom: 16px;
+      }
+    }
+    &__under-form {
+      margin-bottom: 30px;
+    }
+
+    &__other {
+      width: 100%;
+      text-align: center;
+      border-bottom: 1px solid $color-dark-shade;
+      line-height: 1px;
+      margin: 10px 0 30px;
+
+      & span {
+        background: $color-secondary-tint;
+        padding: 0 10px;
+      }
+    }
+
+    &__social-media {
+      margin-bottom: 16px;
+      row-gap: 10px;
+
+      @include respond(xl) {
+        row-gap: 16px;
+      }
+
+      &--item {
+        column-gap: 10px;
+      }
+
+      &--icon {
+        margin-right: 0.7px;
+      }
+    }
+
+    &__footer {
+      text-align: center;
+
+      .primary {
+        cursor: pointer;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+
+  .forgot {
+    &-1 {
+      display: none;
+      @include respond(xl) {
+        display: block;
+      }
+    }
+    &-2 {
+      display: block;
+      @include respond(xl) {
+        display: none;
+      }
+    }
+  }
+}

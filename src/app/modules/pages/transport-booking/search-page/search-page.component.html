@@ -1,0 +1,121 @@
+<div class="search">
+  <!-- SEARCH CARD -->
+  <div class="choice">
+    <app-transport-booking-search-bar
+      [queries]="getQueriesObject()"
+      (search)="search($event)"
+    ></app-transport-booking-search-bar>
+  </div>
+
+  <!-- CTA JUST 4 MOBILE -->
+
+  <div class="search__btns">
+    <button
+      class="btn btn-secondary-tint-border btn-16-16 btn-bold btn-almarai"
+      (click)="isFilterOpen = true"
+    >
+      <i class="icon-filter_alt_black_24dp"></i>
+      {{ "SEARCH.FILTER" | translate }}
+    </button>
+
+    <button
+      class="btn btn-secondary-tint-border btn-16-16 btn-bold btn-almarai"
+      (click)="isClassOpen = true"
+    >
+      {{ "SEARCH.CLASS" | translate }}
+      <i class="icon-arrow_drop_down_black_24dp"></i>
+    </button>
+  </div>
+
+  <!-- SORT BY -->
+
+  <div class="class-mobile" *ngIf="isClassOpen">
+    <app-classificator
+      (closeClassificator)="isClassOpen = false"
+    ></app-classificator>
+  </div>
+
+  <!-- Vehicles + FILTER -->
+
+  <div class="search__hotel-container">
+    <!-- FILTER -->
+
+    <div class="search__vehicles-filter">
+      <div class="filter-mobile" *ngIf="isFilterOpen">
+        <app-filter (closeFilter)="isFilterOpen = false"></app-filter>
+      </div>
+      <div class="filter-desktop">
+        <app-transportation-side-filter></app-transportation-side-filter>
+        <!--    <app-filter></app-filter> -->
+      </div>
+    </div>
+
+    <!-- Vehicles -->
+
+    <div class="search__vehicles-all">
+      <div class="search__hotel-header--container">
+        <div class="search__hotel-header flex items-center justify-between">
+          <h2 class="search-details-desktop-heading filter-main-heading">
+            {{
+              (this.transportationService.state$ | async)?.data?.data?.length
+            }}
+            {{ "TRANSPORT_BOOKING.SEARCH.AVAILABLE_VEHICLE" | translate }}
+          </h2>
+          <div
+            (click)="desktopFilter = !desktopFilter"
+            class="search__hotel-header--filter filter-main-heading"
+          >
+            <span>{{ "SEARCH.CLASS" | translate }}</span>
+            <span class="primary"> {{ deskFilter }}</span>
+            <i class="icon-arrow_drop_down_black_24dp"></i>
+          </div>
+        </div>
+
+        <div class="search__hotel-header--class" *ngIf="desktopFilter">
+          <div class="search__hotel-header--class-content flex flex-col">
+            <li
+              class="search__hotel-header--class-item"
+              *ngFor="let item of items; let i = index"
+              [ngClass]="{ active: activeClass === i }"
+              [value]="item.value"
+              (click)="
+                activeClass = i; deskFilter = item.value; desktopFilter = false
+              "
+            >
+              {{ item.value }}
+            </li>
+          </div>
+        </div>
+      </div>
+
+      <app-card-loader
+        *ngIf="(transportationService.state$ | async)?.loading"
+      ></app-card-loader>
+      <ng-container *ngIf="!(transportationService.state$ | async)?.loading">
+        <div class="search__vehicles flex flex-col">
+          <div
+            *ngFor="
+              let item of (this.transportationService.state$ | async)?.data.data
+            "
+            class="search__hotel"
+            [routerLink]="'../details/' + item.Id"
+            queryParamsHandling="preserve"
+          >
+            <app-vehicle-card [data]="item"></app-vehicle-card>
+          </div>
+        </div>
+
+        <div class="search__btn">
+          <button class="btn btn-dark-dark btn-16-16 btn-almarai btn-bold">
+            {{ "SEARCH.SHOWMORE" | translate }}
+          </button>
+        </div>
+        <app-paginator
+          [pageCount]="(transportationService.state$ | async)?.data.TotalCount"
+          [currentPage]="currentPage"
+          (searchPage)="goToPage($event)"
+        ></app-paginator>
+      </ng-container>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,15 @@
+<h2 class="page-title">{{ "DESTINATIONS.TITLE" | translate }}</h2>
+<div class="destinations-list">
+  <div [routerLink]="['/search']" [queryParams]="{city: '1'}">
+      <img src="assets/images/destinations/mecca.jpg" alt="mecca">
+      <h2 class="title">{{"DESTINATIONS.MECCA" | translate}}</h2>
+  </div>
+  <div [routerLink]="['/search']" [queryParams]="{city: '3'}">
+    <img src="assets/images/destinations/medina.jpg" alt="medina">
+    <h2 class="title">{{"DESTINATIONS.MEDINA" | translate}}</h2>
+  </div>
+  <div  [routerLink]="['/search']" [queryParams]="{city: '2'}">
+    <img src="assets/images/destinations/jeddah.jpg" alt="medina">
+    <h2 class="title">{{"DESTINATIONS.JEDDAH" | translate}}</h2>
+  </div>
+</div>

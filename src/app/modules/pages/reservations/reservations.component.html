@@ -1,0 +1,31 @@
+<div class="main">
+  <nav>
+    <ul class="links">
+      <li class="link active">{{ "RESERVATIONS.MY_RESERVATIONS" | translate }}</li>
+    </ul>
+  </nav>
+
+  <div class="cards">
+    <app-card-reservation
+      [reservation]="item"
+      *ngFor="
+        let item of (httpService.state$ | async)?.data.Data
+          | paginate
+            : {
+                itemsPerPage: 5,
+                currentPage: currentPage,
+                totalItems: (httpService.state$ | async)?.data.TotalCount
+              }
+      "
+    >
+    </app-card-reservation>
+  </div>
+</div>
+<pagination-controls
+  [directionLinks]="true"
+  [autoHide]="true"
+  previousLabel="{{ 'account.reservations.previous' | translate }}"
+  nextLabel="{{ 'account.reservations.next' | translate }}"
+  (pageChange)="goToPage($event)"
+  [maxSize]="(httpService.state$ | async)?.data.TotalCount"
+></pagination-controls>

@@ -1,0 +1,56 @@
+/*
+$breakpoint argument choices:
+- phone
+- big-desktop
+$breakpoints-sm: 640px;
+
+$breakpoints-md: 768px;
+
+$breakpoints-lg: 1024px;
+
+$breakpoints-xl: 1280px;
+
+$breakpoints-xxl: 1536px;
+
+*/
+
+@mixin respond($breakpoint) {
+  @if $breakpoint == sm {
+    @media (min-width: 640px) {
+      @content;
+    }
+  }
+
+  @if $breakpoint == md {
+    @media (min-width: 768px) {
+      @content;
+    }
+  }
+  @if $breakpoint == lg {
+    @media (min-width: 1024px) {
+      @content;
+    }
+  }
+  @if $breakpoint == xl {
+    @media (min-width: 1280px) {
+      @content;
+    }
+  }
+  @if $breakpoint == xxl {
+    @media (min-width: 1536px) {
+      @content;
+    }
+  }
+}
+
+//shadow mixins
+
+@mixin shadow-1 {
+  box-shadow: 0 3px 6px rgb(0 0 0 / 0.29);
+}
+@mixin shadow-2 {
+  box-shadow: 0 0px 12px rgba(0 0 0 / 0.16);
+}
+@mixin shadow-3 {
+  box-shadow: 0 -3px 6px rgb(0 0 0 / 0.29);
+}

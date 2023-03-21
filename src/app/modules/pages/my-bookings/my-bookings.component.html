@@ -1,0 +1,92 @@
+<div class="page">
+  <div class="page-search">
+    <div>حجوزاتي</div>
+    <app-bookings-filter (onSearch)="onSearch($event)"></app-bookings-filter>
+  </div>
+
+  <div class="page-body">
+    <div class="page-body-list web">
+      <table>
+        <thead>
+          <tr>
+            <th>
+              {{ "BOOKINGS.HOTEL" | translate }}
+            </th>
+            <th>
+              {{ "BOOKINGS.RES_AT" | translate }}
+            </th>
+            <th>
+              {{ "BOOKINGS.TRAVEL_DATE" | translate }}
+            </th>
+            <th>{{ "BOOKINGS.PRICE" | translate }}</th>
+            <th>{{ "BOOKINGS.RES_STATUS" | translate }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <ng-container *ngIf="(bookingService.state$ | async)?.loading">
+            <tr *ngFor="let item of [1, 2, 3, 4, 5, 6]">
+              <td>
+                <div class="linear-background"></div>
+              </td>
+              <td>
+                <div class="linear-background"></div>
+              </td>
+              <td>
+                <div class="linear-background"></div>
+              </td>
+              <td>
+                <div class="linear-background"></div>
+              </td>
+              <td>
+                <div class="linear-background"></div>
+              </td>
+              <td>
+                <div class="linear-background"></div>
+              </td>
+              <td>
+                <div class="linear-background"></div>
+              </td>
+            </tr>
+          </ng-container>
+          <ng-container *ngIf="!(bookingService.state$ | async)?.loading">
+            <tr
+              *ngFor="let booking of (bookingService.state$ | async)?.data.data"
+            >
+              <td class="cursor-pointer" (click)="goToDetails(booking.id)">
+                <div class="cursor-pointer address">
+                  <i class="icon-king_bed_black_24dp"></i>
+                  <div class="address-title">فندق الصفوة البرج الاول</div>
+                </div>
+              </td>
+              <td>
+                <div>يوليو 30، 2021</div>
+              </td>
+              <td>
+                <div>أغسطس 03، 2021</div>
+              </td>
+              <td>
+                <div>1680.00 ريال</div>
+              </td>
+              <td>
+                <div>
+                  <app-reservation-state
+                    [text]="'تم بنجاح'"
+                    [type]="'success'"
+                  ></app-reservation-state>
+                </div>
+              </td>
+            </tr>
+          </ng-container>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <pagination-controls
+    [directionLinks]="true"
+    [autoHide]="true"
+    previousLabel="{{ 'PAGINATION.PREV' | translate }}"
+    nextLabel="{{ 'PAGINATION.NEXT' | translate }}"
+    (pageChange)="goToPage($event)"
+    [maxSize]="(bookingService.state$ | async)?.data?.totalCount"
+  ></pagination-controls>
+</div>

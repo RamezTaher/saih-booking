@@ -1,0 +1,119 @@
+<footer class="footer">
+  <div class="main-container">
+    <div class="footer__container flex flex-col">
+      <div class="footer__header flex justify-between items-center">
+        <div class="footer__info flex items-center">
+          <div class="footer__logobox">
+            <img
+              [routerLink]="['/']"
+              src="assets/logos/Group 54555.svg"
+              alt="logo"
+              class="footer__logo"
+            />
+          </div>
+
+          <div class="footer__services-pc">
+            <div class="footer__item pointer">
+              <a
+                class="footer-heading"
+                target="_blank"
+                [routerLink]="['/terms-of-use']"
+                >{{ "FOOTER.RULES" | translate }}</a
+              >
+            </div>
+            <div class="footer__item pointer">
+              <a
+                class="footer-heading"
+                target="_blank"
+                [routerLink]="['/privacy-policy']"
+                >{{ "FOOTER.PRIVACY" | translate }}</a
+              >
+            </div>
+            <div class="footer__item pointer">
+              <a class="footer-heading" [routerLink]="['/contact']">{{
+                "FOOTER.CONTACT" | translate
+              }}</a>
+            </div>
+            <div class="contacts">
+              <div>reservations@alsaehhotels.com</div>
+              <div>966569481485+</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="footer__social-links flex">
+          <div class="footer__social-link">
+            <a target="_blank" href="https://www.facebook.com/alsaehhotels"
+              ><img
+                src="assets/icons/facebook.svg"
+                alt="facebook"
+                class="social-logo"
+            /></a>
+          </div>
+          <div class="footer__social-link">
+            <a href="https://twitter.com/alsaehhotels" target="_blank"
+              ><img
+                src="assets/icons/twitter.svg"
+                alt="twitter"
+                class="social-logo"
+            /></a>
+          </div>
+          <div class="footer__social-link">
+            <a href="https://www.instagram.com/alsaehhotels/" target="_blank"
+              ><img
+                src="assets/icons/instagram.svg"
+                alt="instagram"
+                class="social-logo"
+            /></a>
+          </div>
+          <div class="footer__social-link">
+            <a href="https://www.youtube.com" target="_blank"
+              ><img
+                src="assets/icons/Youtube.svg"
+                alt="youtube"
+                class="social-logo"
+            /></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer__list">
+        <div>
+          <div>reservations@alsaehhotels.com</div>
+          <div>966569481485+</div>
+        </div>
+        <div class="footer__services flex flex-center">
+          <div class="footer__item pointer">
+            <a
+              class="footer-heading"
+              target="_blank"
+              [routerLink]="['/terms-of-use']"
+              >{{ "FOOTER.RULES" | translate }}</a
+            >
+          </div>
+          <div class="footer__item pointer">
+            <a
+              class="footer-heading"
+              target="_blank"
+              [routerLink]="['/privacy-policy']"
+              >{{ "FOOTER.PRIVACY" | translate }}</a
+            >
+          </div>
+          <div class="footer__item pointer">
+            <a class="footer-heading" [routerLink]="['/contact']">{{
+              "FOOTER.CONTACT" | translate
+            }}</a>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="footer__copyright footer-heading">
+        <div>
+          &copy; السائح العربي {{ date.getFullYear() }}
+          {{ "FOOTER.RIGHTS" | translate }}.
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>

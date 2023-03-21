@@ -1,0 +1,196 @@
+<div class="info-pay">
+  <div class="main-container">
+    <app-card-loader
+      class="info-pay__container grid"
+      *ngIf="(httpsService.state$ | async)?.loading"
+    ></app-card-loader>
+    <ng-container>
+      <div class="info-pay__container grid">
+        <div class="room__item">
+          <img
+            [src]="(this.httpsService.state$ | async)?.data?.DefaultPicture"
+            class="room__img"
+            alt="room"
+          />
+
+          <div class="room__details">
+            <div class="room__hotel">
+              <div class="room__hotel--header">
+                <h2 class="hotel-item-name">
+                  {{ (this.httpsService.state$ | async)?.data?.NameAr }}
+                </h2>
+                <app-box-stars
+                  [stars]="(this.httpsService.state$ | async)?.data?.Stars"
+                ></app-box-stars>
+              </div>
+              <div class="room__location flex items-center">
+                <i class="icon-map-pin room__location--icon"></i>
+                <h3 class="hotel-item-type-date">
+                  {{
+                    (this.httpsService.state$ | async)?.data?.AdressAr ??
+                      (this.httpsService.state$ | async)?.data?.Adress
+                  }}
+                </h3>
+              </div>
+            </div>
+            <div class="room__info" *ngFor="let item of rooms">
+              <h4 class="hotel-item-room-type">
+                {{ item.Quantity }}
+                {{ item.RoomTypeNameAr ?? item.RoomTypeName }}
+              </h4>
+              <ul class="room__options--list flex flex-wrap">
+                <li class="room__options--item hotel-item-room-service">
+                  <i class="icon-XMLID_95"></i> {{ item.MealAr ?? item.Meal }}
+                </li>
+                <li class="room__options--item hotel-item-room-service">
+                  <i class="icon-balcony"></i>
+                  {{ item.ViewNameAr ?? item.ViewName }}
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="booking__info">
+          <h4 class="book-main-heading">معلومات الحجز</h4>
+          <ul class="booking__price flex flex-col">
+            <li class="booking__item">
+              <h4 class="book-heading-2">
+                {{ getRoomsNumbers() }} غرف ×
+                {{ this.rooms[0].NbrNights }} ليالي
+              </h4>
+              <h4 class="book-heading-1">
+                {{ total_without_vat.toFixed(2) }} ريال
+              </h4>
+            </li>
+            <li class="booking__item">
+              <h4 class="book-heading-2">ضريبة القيمة المضافة</h4>
+              <h4 class="book-heading-1">{{ total_vat.toFixed(2) }} ريال</h4>
+            </li>
+          </ul>
+          <div class="booking__sum flex items-center justify-between">
+            <h2 class="book-sum">{{ "INFOPAY.SUM" | translate }}</h2>
+            <h3 class="hotel-item-price">{{ total_price.toFixed(2) }} ريال</h3>
+          </div>
+        </div>
+
+        <div class="info__form-container">
+          <h2 class="book-main-heading info__heading">
+            {{ "INFOPAY.INOFBOOKING" | translate }}
+          </h2>
+          <form [formGroup]="user_form" class="info__form">
+            <div class="form-control">
+              <input
+                formControlName="FirstName"
+                name="FirstName"
+                class="primary-input"
+                type="text"
+                required
+                placeholder="{{ 'INPUTS.FIRSTNAME' | translate }}"
+              />
+              <div
+                class="app-messages error"
+                *ngIf="
+                  user_form.controls['FirstName'].touched &&
+                  user_form.controls['FirstName'].invalid
+                "
+              >
+                {{ "Validation.Required" | translate }}
+              </div>
+            </div>
+            <div class="form-control">
+              <input
+                class="primary-input"
+                formControlName="LastName"
+                name="LastName"
+                type="text"
+                placeholder="{{ 'INPUTS.LASTNAME' | translate }}"
+              />
+              <div
+                class="app-messages error"
+                *ngIf="
+                  user_form.controls['LastName'].touched &&
+                  user_form.controls['LastName'].invalid
+                "
+              >
+                {{ "Validation.Required" | translate }}
+              </div>
+            </div>
+            <div class="form-control">
+              <input
+                class="primary-input"
+                formControlName="Email"
+                name="Email"
+                type="email"
+                placeholder="{{ 'INPUTS.MAIL' | translate }}"
+              />
+              <div
+                class="app-messages error"
+                *ngIf="
+                  user_form.controls['Email'].touched &&
+                  user_form.controls['Email'].invalid
+                "
+              >
+                {{ "Validation.Pattern" | translate }}
+              </div>
+            </div>
+
+            <div class="form-control">
+              <input
+                class="primary-input"
+                type="text"
+                formControlName="Phone"
+                name="Phone"
+                required
+                placeholder="{{ 'INPUTS.PHONE' | translate }}"
+              />
+              <div
+                class="app-messages error"
+                *ngIf="
+                  user_form.controls['Phone'].touched &&
+                  user_form.controls['Phone'].invalid
+                "
+              >
+                {{ "Validation.Required" | translate }}
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <div class="feedback">
+          <h4 class="book-main-heading feedback__heading">
+            {{ "INFOPAY.DEMANDES" | translate }}
+          </h4>
+          <form class="feedback__form">
+            <textarea
+              type="text"
+              name="notes"
+              class="feedback__textarea"
+              placeholder="{{ 'INFOPAY.DEMANDESPLACEHOLDER' | translate }}"
+            >
+            </textarea>
+          </form>
+          <p class="book-danger feedback__claim">
+            {{ "INFOPAY.WARNING" | translate }}
+          </p>
+
+          <div class="feedback__cta flex flex-col">
+            <button
+              class="btn btn-dark btn-12-16 btn-bold btn-almarai"
+              (click)="payment()"
+            >
+              {{ "INFOPAY.PAY" | translate }}
+            </button>
+            <button
+              (click)="goBack()"
+              class="btn btn-secondary-shade-border-dark btn-12-16 btn-bold btn-almarai"
+              routerLink="/search"
+            >
+              {{ "INFOPAY.BACK" | translate }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</div>

@@ -1,0 +1,24 @@
+<div
+  (clickAway)="clickOutside()"
+  [ngClass]="{ 'picker-open': isSelectPickerOpen }"
+  class="picker"
+>
+  <div
+    class="picker-section"
+    (click)="isSelectPickerOpen = !isSelectPickerOpen"
+  >
+    <div [ngClass]="{ 'dark-tint-color': !selectedData }">
+      {{ selectedData ? selectedData : config.placeholder }}
+    </div>
+    <i class="icon-expand_more_black_24dp"></i>
+  </div>
+  <div *ngIf="isSelectPickerOpen" class="picker-drop">
+    <div
+      *ngFor="let item of data"
+      class="picker-drop-item"
+      (click)="onSelectClick(item)"
+    >
+      {{ item[config.valueField] ? item[config.valueField] : item }}
+    </div>
+  </div>
+</div>

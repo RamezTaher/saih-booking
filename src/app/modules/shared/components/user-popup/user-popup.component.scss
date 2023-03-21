@@ -1,0 +1,72 @@
+@import "utilities/variables";
+
+.main {
+  position: absolute;
+  top: 62px;
+  background: #fff;
+  z-index: 9999;
+  width: 200px;
+  display: flex;
+  border: 1px solid #cbdaed;
+  border-radius: 5px;
+  padding: 0px;
+  .links {
+    border-left: 1px solid #cbdaed;
+    padding: 10px;
+    .link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      &.border-bottom {
+        border-bottom: 2px solid #717171;
+      }
+      &:last-child {
+        border-bottom: none !important;
+      }
+
+      a {
+        width: 177px;
+        padding: 0 15px;
+        height: 43px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        font-size: 15px;
+        color: #717171;
+        border-radius: 22px;
+        text-decoration: none;
+        img {
+          margin-left: 10px;
+          margin-right: 25px;
+        }
+        &.active {
+          background: #dfe8f4;
+          color: #356fb8;
+        }
+      }
+    }
+  }
+  .router-main {
+    // padding: 20px;
+    width: 100%;
+  }
+}
+
+.profile {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  float: left;
+  color: #3f3f3f;
+  padding-left: 20px;
+  cursor: pointer;
+  .user-name {
+    padding-right: 10px;
+    user-select: none;
+  }
+}
+.text-dark {
+  color: $color-dark-tint;
+}

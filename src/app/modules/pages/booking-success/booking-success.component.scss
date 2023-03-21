@@ -1,0 +1,199 @@
+@import "utilities/variables";
+@import "utilities/mixins";
+:host {
+  .page {
+    padding: 100px 37px 50px;
+    min-height: 100vh;
+    background-color: $color-secondary;
+    @include respond(xl) {
+      background-color: $color-secondary-tint;
+      padding: 120px 138px 100px;
+    }
+
+    .res-success {
+      padding: 16px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 16px;
+      @include shadow-2;
+      > i {
+        font-size: 37px;
+        color: #00800a;
+      }
+      > div {
+        font-size: 24px;
+        font-weight: bold;
+        color: $color-dark;
+      }
+    }
+
+    &__container {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+      align-items: flex-start;
+    }
+
+    .room__item,
+    .booking__info,
+    .user-info,
+    .feedback {
+      grid-column: span 3 / span 3;
+      background-color: $color-secondary-tint;
+      @include shadow-2;
+    }
+
+    .booking__info {
+      @include respond(xl) {
+        grid-column: span 1 / span 1;
+        max-height: 220px;
+      }
+    }
+
+    .room {
+      &__item {
+        @include respond(xl) {
+          display: flex;
+          min-height: 150px;
+          grid-column: span 2 / span 2;
+        }
+      }
+      &__hotel {
+        border-bottom: 1px solid $color-secondary-shade;
+        padding-bottom: 6px;
+        @include respond(xl) {
+          padding: 0;
+          border: 0;
+        }
+
+        &--header {
+          @include respond(xl) {
+            display: flex;
+            align-items: center;
+            column-gap: 10px;
+            margin-bottom: 5px;
+          }
+
+          .details-heading-1 {
+            font-size: 16px;
+            line-height: 30px;
+          }
+        }
+      }
+      &__img {
+        height: 150px;
+        width: 100%;
+
+        @include respond(xl) {
+          width: 300px;
+        }
+      }
+      &__location {
+        display: flex;
+        gap: 4px;
+        & > i {
+          font-size: 16px;
+          color: $color-dark-shade;
+        }
+      }
+      &__details {
+        padding: 10px 16px 16px;
+        width: 100%;
+      }
+
+      &__stars {
+        column-gap: 3px;
+        font-size: 16px;
+        margin-bottom: 5px;
+        color: $color-primary;
+      }
+
+      &__info {
+        padding-top: 5px;
+      }
+      &__options--list {
+        justify-content: space-between;
+        margin: 5px 0;
+
+        @include respond(xl) {
+          column-gap: 15px;
+          justify-content: start;
+        }
+      }
+      &__options--item {
+        display: flex;
+        align-items: center;
+        width: 45%;
+        @include respond(xl) {
+          width: auto;
+        }
+
+        & > i {
+          margin-left: 5px;
+          font-size: 14px;
+          color: $color-primary;
+        }
+      }
+    }
+
+    .booking {
+      &__info {
+        padding: 16px;
+      }
+      &__price {
+        row-gap: 10px;
+        margin: 20px 0;
+      }
+
+      &__item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-bottom: 7px;
+        border-bottom: 1px solid $color-secondary-shade;
+      }
+    }
+
+    .user-info {
+      padding: 16px;
+      background-color: $color-secondary-tint;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+      @include respond(xl) {
+        padding: 20px;
+        grid-column: span 2 / span 2;
+      }
+
+      &-data {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        align-items: center;
+        gap: 16px;
+        > div {
+          grid-column: span 2 / span 2;
+          @include respond(xl) {
+            grid-column: span 1 / span 1;
+          }
+        }
+      }
+    }
+
+    .feedback {
+      padding: 17px;
+      @include shadow-2;
+
+      @include respond(xl) {
+        padding: 20px;
+        grid-column: span 2 / span 2;
+      }
+
+      &__heading {
+        margin-bottom: 28px;
+        @include respond(xl) {
+          margin-bottom: 20px;
+        }
+      }
+    }
+  }
+}

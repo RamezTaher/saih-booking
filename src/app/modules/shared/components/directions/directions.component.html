@@ -1,0 +1,27 @@
+<div class="directions">
+  <div class="directions__header">
+    <div class="main-container flex justify-center">
+      <h2 class="pop-big-heading">
+        {{ "HOME.DIRECTIONS.DIRECTION" | translate }}
+      </h2>
+      <div
+        class="directions__closeBtn"
+        (click)="changeDirection({ text: '', value: 0 })"
+      >
+        <i class="icon-clear_black_24dp"></i>
+      </div>
+    </div>
+  </div>
+  <div class="directions__content flex flex-col">
+    <li
+      *ngFor="let item of directions"
+      class="directions__item pop-heading-3 pointer"
+      (click)="changeDirection(item)"
+    >
+      <i class="icon-map-pin directions__icon"></i>
+      <div>
+        {{ item.text }}
+      </div>
+    </li>
+  </div>
+</div>

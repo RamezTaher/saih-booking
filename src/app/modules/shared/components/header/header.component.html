@@ -1,0 +1,234 @@
+<header class="header">
+  <div class="header__container flex" [ngClass]="{ center: returnHeader }">
+    <div [routerLink]="['/home']" class="header__logo pointer">
+      <img
+        src="assets/logos/Group 54554.svg"
+        alt="Booking__logo"
+        class="logo"
+      />
+    </div>
+
+    <div class="nav-mob">
+      <div class="nav-mob__container flex flex-col" *ngIf="isMobile">
+        <div class="cta" *ngIf="!storageService.isLogged()">
+          <!--  <div class="cta__container flex flex-col">
+            <button
+              routerLink="./signin"
+              class="btn btn-primary btn-16-16 btn-bold"
+              (click)="isMobile = false"
+            >
+              {{ "HEADER.SIGNIN" | translate }}
+            </button>
+            <button
+              routerLink="./signup"
+              class="btn btn-secondary-tint-primary btn-16-16 btn-bold"
+              (click)="isMobile = false"
+            >
+              {{ "HEADER.SIGNUP" | translate }}
+            </button>
+          </div>-->
+        </div>
+        <nav class="nav">
+          <ul class="nav__list flex flex-col">
+            <li
+              class="nav__item header-heading"
+              routerLink="/home"
+              routerLinkActive="active"
+              (click)="isMobile = false"
+            >
+              {{ "HEADER.HOME" | translate }}
+            </li>
+            <li
+              class="nav__item header-heading"
+              routerLink="/search"
+              routerLinkActive="active"
+              (click)="isMobile = false"
+            >
+              {{ "HEADER.SEARCH" | translate }}
+            </li>
+            <li
+              class="nav__item header-heading"
+              routerLink="/destinations"
+              routerLinkActive="active"
+              (click)="isMobile = false"
+            >
+              {{ "HEADER.DESTINATIONS" | translate }}
+            </li>
+
+            <li
+              class="nav__item header-heading"
+              routerLink="/transport-booking"
+              routerLinkActive="active"
+              (click)="isMobile = false"
+            >
+              {{ "HEADER.TRANSPORT_BOOKING" | translate }}
+            </li>
+
+            <li
+              class="nav__item header-heading"
+              routerLink="/hotels"
+              routerLinkActive="active"
+              (click)="isMobile = false"
+            >
+              {{ "HEADER.HOTELS" | translate }}
+            </li>
+            <li
+              class="nav__item header-heading"
+              routerLink="/reservations"
+              routerLinkActive="active"
+              *ngIf="storageService.isLogged()"
+              (click)="isMobile = false"
+            >
+              {{ "HEADER.RESERVATIONS" | translate }}
+            </li>
+            <li
+              class="nav__item header-heading"
+              routerLink="/contact"
+              routerLinkActive="active"
+              (click)="isMobile = false"
+            >
+              {{ "HEADER.CONTACT" | translate }}
+            </li>
+            <li
+              class="nav__item header-heading"
+              routerLink="/profile"
+              routerLinkActive="active"
+              *ngIf="storageService.isLogged()"
+              (click)="isMobile = false"
+            >
+              {{ "HEADER.Profile" | translate }}
+            </li>
+            <li
+              class="nav__item header-heading"
+              routerLinkActive="active"
+              *ngIf="storageService.isLogged()"
+              (click)="logout(); this.isMobile = false"
+            >
+              {{ "HEADER.Logout" | translate }}
+            </li>
+            <!--  -->
+          </ul>
+        </nav>
+      </div>
+      <div
+        class="nav-mob__bg"
+        *ngIf="isMobile"
+        (click)="isMobile = false"
+      ></div>
+    </div>
+
+    <div class="nav-web flex justify-center">
+      <nav class="nav">
+        <ul class="nav__list flex">
+          <li
+            class="nav__item header-heading"
+            routerLink="/home"
+            routerLinkActive="active"
+          >
+            {{ "HEADER.HOME" | translate }}
+          </li>
+          <li
+            class="nav__item header-heading"
+            routerLink="/search"
+            routerLinkActive="active"
+          >
+            {{ "HEADER.SEARCH" | translate }}
+          </li>
+          <li
+            class="nav__item header-heading"
+            routerLink="/destinations"
+            routerLinkActive="active"
+          >
+            {{ "HEADER.DESTINATIONS" | translate }}
+          </li>
+          <li
+            class="nav__item header-heading"
+            routerLink="/reservations"
+            routerLinkActive="active"
+            *ngIf="storageService.isLogged()"
+          >
+            {{ "HEADER.RESERVATIONS" | translate }}
+          </li>
+
+          <li
+            class="nav__item header-heading"
+            routerLink="/transport-booking"
+            routerLinkActive="active"
+          >
+            {{ "HEADER.TRANSPORT_BOOKING" | translate }}
+          </li>
+
+          <li
+            class="nav__item header-heading"
+            routerLink="/hotels"
+            routerLinkActive="active"
+          >
+            {{ "HEADER.HOTELS" | translate }}
+          </li>
+          <li
+            class="nav__item header-heading"
+            routerLink="/contact"
+            routerLinkActive="active"
+          >
+            {{ "HEADER.CONTACT" | translate }}
+          </li>
+        </ul>
+      </nav>
+
+      <div class="cta flex flex-col" *ngIf="!storageService.isLogged()">
+        <!--  <button
+          class="btn btn-primary btn-16-16 btn-bold"
+          (click)="signinService.open()"
+        >
+          {{ "HEADER.SIGNIN" | translate }}
+        </button>
+        <button
+          routerLink="./signup"
+          class="btn btn-secondary-tint-primary btn-16-16 btn-bold"
+        >
+          {{ "HEADER.SIGNUP" | translate }}
+        </button>-->
+      </div>
+
+      <div class="cta flex flex-col" *ngIf="storageService.isLogged()">
+        <app-user-popup></app-user-popup>
+      </div>
+    </div>
+
+    <i
+      *ngIf="!isMobile && !closeBtn"
+      class="icon-menu_black_24dp primary header__toggle"
+      (click)="onToggle()"
+    ></i>
+
+    <div
+      *ngIf="returnHeader"
+      class="header__return"
+      routerLink="{{ this.return }}"
+    >
+      <i class="icon-expand_more_black_24dp header__return--btn"></i>
+    </div>
+    <div *ngIf="closeBtn" class="header__close" [routerLink]="'/'">
+      <i class="icon-clear_black_24dp header__close--btn"></i>
+    </div>
+  </div>
+</header>
+
+<div class="pages__popup" *ngIf="signinService.isOpen || isForgot">
+  <div class="pages__overlay">
+    <app-signin
+      *ngIf="signinService.isOpen"
+      (closeSignin)="signinService.close()"
+      (forgotEvent)="isForgot = true; signinService.close()"
+    ></app-signin>
+    <app-forgot-password
+      *ngIf="isForgot"
+      (closeForgot)="isForgot = false"
+    ></app-forgot-password>
+  </div>
+  <div
+    *ngIf="signinService.isOpen || isForgot"
+    (click)="signinService.close(); isForgot = false"
+    class="pages__bg"
+  ></div>
+</div>

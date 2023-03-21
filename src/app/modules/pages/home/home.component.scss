@@ -1,0 +1,157 @@
+@import "utilities/mixins";
+@import "utilities/variables";
+
+:host {
+  .home {
+    background-color: $color-secondary-shade;
+    color: $color-dark;
+    min-height: 100vh;
+
+    &__landing {
+      margin-bottom: 300px;
+      @include respond(lg) {
+        margin-bottom: 0;
+      }
+    }
+
+    &__choice-card {
+      @include shadow-1;
+    }
+
+    &__intro {
+      height: 360px;
+      background: url("../../../../assets/icons/pexels-mohannad-almuqhim-6187368.jpg");
+      background-position: center center;
+      background-size: cover;
+      background-repeat: no-repeat;
+      padding: 27px 37px;
+      @include respond(lg) {
+        padding: 151px 138px 0 138px;
+        height: 632px;
+        background-size: 50% 100%;
+        background-position: left top;
+      }
+
+      .home-big-heading {
+        margin-bottom: 32px;
+
+        @include respond(xl) {
+          max-width: 60%;
+        }
+      }
+    }
+
+    /*  HOTELS  */
+
+    &__hotels {
+      padding: 100px 0;
+      background-color: $color-secondary-tint;
+      row-gap: 32px;
+      .home-main-heading {
+        margin-right: 37px;
+
+        @include respond(xl) {
+          margin-right: 138px;
+        }
+      }
+
+      &--cta {
+        padding: 0 37px;
+        @include respond(xl) {
+          padding: 0 138px;
+        }
+
+        button {
+          @include respond(xl) {
+            width: 12%;
+          }
+        }
+      }
+    }
+
+    &__places {
+      padding-right: 37px;
+      overflow-y: scroll;
+      border-bottom: 2px solid $color-secondary-shade;
+      &::-webkit-scrollbar {
+        display: none;
+      }
+
+      @include respond(lg) {
+        padding-right: 138px;
+      }
+    }
+
+    &__place {
+      width: 100px;
+      text-align: center;
+      &-container {
+        cursor: pointer;
+        padding: 10px 0px 8px 10px;
+        position: relative;
+        top: 2px;
+        &.active {
+          border-bottom: 2px solid $color-primary;
+        }
+      }
+    }
+    &__hotels-items {
+      padding: 0 37px 32px;
+      grid-template-columns: repeat(1, minmax(0, 1fr));
+      justify-items: center;
+      gap: 10px;
+      overflow-x: scroll;
+      &::-webkit-scrollbar {
+        display: none;
+      }
+
+      @include respond(lg) {
+        overflow-x: hidden;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        justify-items: center;
+        padding: 0 138px 32px;
+      }
+    }
+
+    /* MAIL */
+
+    &__mail {
+      background: url("../../../../assets/icons/pexels-mohammed-ajwad-9822971.jpg");
+      background-position: center center;
+      background-size: cover;
+
+      &--content {
+        color: $color-secondary-tint;
+        padding: 37px;
+        background-color: rgba($color-dark-tint, 0.6);
+        row-gap: 16px;
+
+        @include respond(xl) {
+          padding: 138px;
+          width: 50%;
+          row-gap: 32px;
+        }
+      }
+
+      &--text {
+        row-gap: 5px;
+      }
+
+      &--form {
+        column-gap: 8px;
+      }
+
+      &--input {
+        width: 150%;
+        padding: 10px;
+        font-size: 12px;
+        color: $color-secondary-tint;
+        background-color: transparent;
+        border: 1px solid $color-secondary-tint;
+      }
+    }
+  }
+}
+app-card-loader{
+  width: 100%;
+}

@@ -1,0 +1,85 @@
+@import "utilities/variables";
+@import "utilities/mixins";
+
+.footer {
+  background-color: $color-dark-tint;
+  color: $color-secondary-tint;
+  padding-top: 14px;
+
+  &__header {
+    justify-content: space-between;
+  }
+
+  &__container {
+    row-gap: 32px;
+    @include respond(xl) {
+      row-gap: 16px;
+    }
+  }
+
+  &__logobox {
+    height: 50px;
+    width: 40px;
+
+    @include respond(xl) {
+      margin-left: 32px;
+    }
+  }
+
+  &__logo {
+    width: 100%;
+    height: 100%;
+  }
+
+  &__social-links {
+    column-gap: 8px;
+  }
+
+  &__social-link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 30px;
+    width: 30px;
+    cursor: pointer;
+    & > a {
+      height: 100%;
+    }
+  }
+  &__item {
+    cursor: pointer;
+    & > a {
+      text-decoration: none;
+    }
+  }
+
+  &__list {
+    @include respond(xl) {
+      display: none;
+    }
+  }
+
+  &__services {
+    column-gap: 27px;
+
+    &-pc {
+      display: none;
+      column-gap: 32px;
+      @include respond(xl) {
+        display: flex;
+      }
+    }
+  }
+
+  &__copyright {
+    text-align: center;
+    padding: 4px 0;
+    border-top: 2px solid $color-primary;
+  }
+}
+.contacts{
+  display: flex;
+  div{
+    padding: 0 5px;;
+  }
+}

@@ -1,0 +1,86 @@
+<div
+  [ngClass]="{ only_one_room: room.Data.length === 1 }"
+  class="room__details--item"
+>
+  <div class="room__info">
+    <div class="room__info--cell">
+      <div class="room__info--img">
+        <img [src]="picture??'assets/icons/hotel.jpg'" alt="" />
+      </div>
+      <h4 class="room__info--type hotel-item-room-type">
+        {{ room.RoomTypeNameAr ?? room.RoomTypeName }}
+      </h4>
+    </div>
+  </div>
+  <div class="room__options-price">
+    <div
+      [ngClass]="{ only_one_room: room.Data.length === 1 }"
+      class="room__options-price--item"
+      *ngFor="let choice of room.Data"
+    >
+      <div class="room__options">
+        <div class="room__options--cell">
+          <ul class="room__options--list">
+            <li class="room__options--item hotel-item-room-service">
+              <i class="icon-bed"></i> {{ choice.MealAr ?? choice.Meal }}
+            </li>
+            <li class="room__options--item hotel-item-room-service">
+              <i class="icon-balcony"></i>
+              {{ choice.ViewNameAr ?? choice.ViewName }}
+            </li>
+          </ul>
+          <h5 class="room__options--date hotel-item-type-date">
+            من {{ choice.CheckIn | date }} الى {{ choice.CheckOut | date }}
+          </h5>
+        </div>
+      </div>
+      <div class="room__price">
+        <div class="room__price--cell">
+          <div class="room__price--details">
+            <div class="room__price--num hotel-item-price">
+              {{ choice.PriceToPay }} ريال
+            </div>
+            <div class="room__price--period hotel-item-period">
+              لمدة {{ choice.NbrNights }} ليالٍ
+            </div>
+            <div class="room__price--type hotel-item-type-date">
+              شامل الضرائب والرسوم
+            </div>
+          </div>
+          <div *ngIf="!choice.CutOutTimeMet"  class="color-red">{{'HotelDetails.CutOutTimeNotMet' | translate}} {{choice.CutOutTime}}</div>
+          <div *ngIf="!choice.MinimumCheckInDateMet"  class="color-red">{{'HotelDetails.MinimumCheckInDateNotMet' | translate}} {{choice.MinimumCheckInDate | date : 'dd-MM-yyyy': 'UTC +3'}}</div>
+          <div  class="color-red" *ngIf="(choice.Rules && choice.Rules.length > 0 && !choice.Rules[0]?.FulFilled)">
+            <bdi> يجب حجز {{choice.Rules[0]?.MinimumNights}} ليالي على الأقل  </bdi>
+          </div>
+          <div *ngIf="choice.CutOutTimeMet && choice.MinimumCheckInDateMet && (choice?.Rules?.length == 0 || choice?.Rules[0]?.FulFilled)"  class="room__price--cta">
+            <div
+              *ngIf="choice.selected && choice.Quantity > 0"
+              class="room__price--cta"
+            >
+              <button
+                class="btn btn-dark btn-bold btn-almarai room__price--cta-box"
+                (click)="inc(choice)"
+              >
+                +
+              </button>
+              <div class="room__price--cta-box show">{{ choice.Quantity }}</div>
+              <button
+                class="room__price--cta-box btn btn-dark btn-bold btn-almarai"
+                (click)="dec(choice)"
+              >
+                -
+              </button>
+            </div>
+            <button
+              *ngIf="!choice.selected || choice.Quantity == 0"
+              (click)="selectChoice(choice)"
+              class="btn btn-dark btn-bold btn-almarai btn-16-16"
+            >
+              {{ "ROOM.CHOOSE" | translate }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

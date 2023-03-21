@@ -1,0 +1,44 @@
+<div class="hotels">
+  <div class="main-container">
+    <div class="hotels__container flex flex-col">
+      <h2 class="home-main-heading">
+        {{ "HOTELS" | translate }}
+      </h2>
+      <div
+        *ngIf="(hotelsService.state$ | async)?.loading"
+        class="hotels__container-box flex flex-col"
+      >
+        <app-card-loader></app-card-loader>
+      </div>
+      <div
+        *ngIf="!(hotelsService.state$ | async)?.loading"
+        class="hotels__container-box"
+      >
+        <app-hotel-item
+          [hotel]="item"
+          (click)="goToDetails(item)"
+          *ngFor="
+            let item of (hotelsService.state$ | async)?.data?.Data
+              | paginate
+                : {
+                    itemsPerPage: 10,
+                    currentPage: this.currentPage,
+                    totalItems: (hotelsService.state$ | async)?.data.TotalCount
+                  }
+          "
+        ></app-hotel-item>
+      </div>
+
+      <div class="hotels-pagination">
+        <pagination-controls
+          class="my-pagination"
+          previousLabel=""
+          nextLabel=""
+          [autoHide]="true"
+          (pageChange)="goToPage($event)"
+          [responsive]="true"
+        ></pagination-controls>
+      </div>
+    </div>
+  </div>
+</div>

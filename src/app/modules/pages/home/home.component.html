@@ -1,0 +1,66 @@
+<div class="home">
+  <div class="home__landing">
+    <div class="home__intro">
+      <h2 class="home-big-heading">
+        <span class="primary">
+          {{ "HOME.BODY.TITLE.HIGHLIGHT" | translate }} </span
+        >{{ "HOME.BODY.TITLE.NORMAL" | translate }}
+      </h2>
+      <div class="home__choice-card">
+        <app-choice-card (search)="goToSearch($event)"></app-choice-card>
+      </div>
+    </div>
+  </div>
+  <div class="home__hotels flex flex-col">
+    <h2 class="home-main-heading">
+      {{ "HOME.BODY.CAROUSAL.TITLE" | translate }}
+    </h2>
+
+    <div *ngIf="(httpService.state$ | async)?.loading" class="home__hotels-items grid">
+      <app-card-loader></app-card-loader>
+    </div>
+    <div *ngIf="!(httpService.state$ | async)?.loading" class="home__hotels-items grid">
+      <app-hotel-item
+        [hotel]="item"
+        (click)="goToDetails(item)"
+        *ngFor="let item of (httpService.state$ | async)?.data"
+      ></app-hotel-item>
+    </div>
+
+    <div class="home__hotels--cta flex justify-end">
+      <button
+        routerLink="/hotels"
+        class="btn btn-secondary-tint-border btn-16-16 btn-bold btn-almarai"
+      >
+        {{ "HOME.BODY.CAROUSAL.ALLHOTELS" | translate }}
+      </button>
+    </div>
+  </div>
+
+  <div class="home__mail">
+    <div class="home__mail--content flex flex-col">
+      <div class="home__mail--text flex flex-col">
+        <h2 class="home-main-heading white">
+          {{ "HOME.BODY.MAIL.TITLE" | translate }}
+        </h2>
+        <h2 class="home-heading-1">
+          {{ "HOME.BODY.MAIL.UNDERTITLE" | translate }}
+        </h2>
+      </div>
+      <div class="home__mail--form flex">
+        <input
+          [(ngModel)]="email"
+          type="email"
+          class="home__mail--input"
+          placeholder="{{ 'HOME.BODY.MAIL.PLACEHOLDER' | translate }}"
+        />
+        <button
+          (click)="onSubscribeToNewLetter()"
+          class="btn btn-secondary-tint-border btn-16-16 btn-bold btn-almarai"
+        >
+          {{ "HOME.BODY.MAIL.REGISTER" | translate }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

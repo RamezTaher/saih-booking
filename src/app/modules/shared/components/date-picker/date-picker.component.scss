@@ -1,0 +1,31 @@
+@import "utilities/variables";
+@import "utilities/mixins";
+
+:host {
+  h3 {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    column-gap: 7px;
+  }
+
+  i {
+    color: $color-primary;
+  }
+  .departure {
+    justify-content: end;
+  }
+  .dates {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    > div {
+    }
+    & > i {
+      display: none;
+      @include respond(xl) {
+        display: block;
+      }
+    }
+  }
+}

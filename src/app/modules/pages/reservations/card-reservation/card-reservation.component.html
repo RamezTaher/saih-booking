@@ -1,0 +1,59 @@
+<div class="ctn">
+  <div class="main">
+    <div class="main-card cursor-pointer" (click)="displayDetail = !displayDetail">
+      <img class="hotel-img"  [src]="reservation?.Hotel?.Pictures[0].SecureUri" />
+      <div class="card-detail">
+        <div class="detail-1">
+          <div class="hotel-name">{{reservation?.Hotel?.Name}}       <app-box-stars [stars]="reservation?.Hotel?.Stars"></app-box-stars>  </div>
+          <div class="room-type">
+            <div class="unity">{{reservation?.Hotel?.City}} </div>
+          </div>
+          <div class="room-type">
+            <div class="unity">{{reservation?.StartDate}} - {{reservation?.EndDate}} </div>
+          </div>
+          <div class="room-type">
+            <div class="unity">{{reservation?.RoomType}}</div>
+          </div>
+        </div>
+        <div class="dates">
+          {{reservation?.StartDate}}
+        </div>
+      </div>
+
+      <img class="pr-2 pl-2" [class.card-open-img]="displayDetail" src="/assets/icons/down-arrow.svg" />
+    </div>
+    <div class="details" *ngIf="displayDetail">
+      <div class="reservation-detail">
+        <h1>{{'RESERVATIONS.ReservationDetails' | translate}}</h1>
+        <div class="item">
+          <div class="unity">{{'RESERVATIONS.ReservationNumber' | translate}}</div>
+          <div class="value">{{reservation?.BookingId}}</div>
+        </div>
+        <div class="item">
+          <div class="unity">{{'RESERVATIONS.Checkin' | translate}}</div>
+          <div class="value date">
+            <div>{{reservation?.StartDate}}</div>
+          </div>
+        </div>
+        <div class="item">
+          <div class="unity">{{'RESERVATIONS.Checkout' | translate}}</div>
+          <div>{{reservation?.EndDate}}</div>
+        </div>
+      </div>
+      <div class="position">
+        <h1>{{'RESERVATIONS.OnMap' | translate}}</h1>
+        <div class="gps-container">
+          <div class="gps">
+
+            <google-map *ngIf="reservation?.Hotel?.MapJson" height="140px" width="400px"
+            width="100%"
+            [center]="{lat: reservation?.Hotel?.MapJson.geometry.location.lat, lng: reservation?.Hotel?.MapJson.geometry.location.lng}"
+            [zoom]="12" >
+            <map-marker [position]="{lat: reservation?.Hotel?.MapJson.geometry.location.lat, lng: reservation?.Hotel?.MapJson.geometry.location.lng}"></map-marker>
+          </google-map>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>

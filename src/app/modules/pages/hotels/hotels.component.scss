@@ -1,0 +1,48 @@
+@import "utilities/variables";
+@import "utilities/mixins";
+
+:host {
+  .hotels {
+    padding: 0 0 100px;
+    min-height: 100vh;
+    
+
+    &__container {
+      padding-top: 32px;
+      row-gap: 32px;
+
+      &-box {
+        display: grid;
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+        justify-content: center;
+        align-items: center;
+        gap: 24px;
+        @include respond(xl) {
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+          align-items: stretch;
+        }
+      }
+    }
+
+    &__places {
+      overflow-y: scroll;
+      border-bottom: 2px solid $color-secondary-shade;
+      &::-webkit-scrollbar {
+        display: none;
+      }
+    }
+
+    &__place {
+      width: 100px;
+      text-align: center;
+      &-container {
+        padding: 10px 0px 8px 10px;
+        color: $color-dark-shade;
+        &.active {
+          color: $color-dark;
+          border-bottom: 2px solid $color-primary;
+        }
+      }
+    }
+  }
+}

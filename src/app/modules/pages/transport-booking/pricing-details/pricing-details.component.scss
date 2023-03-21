@@ -1,0 +1,88 @@
+@import "utilities/variables";
+@import "utilities/mixins";
+
+:host {
+  display: block;
+}
+
+h2 {
+  font: normal normal bold 24px/45px Cairo;
+  color: $color-dark;
+}
+
+h3 {
+  font: normal normal bold 16px/30px Cairo;
+  color: $color-dark;
+}
+
+p {
+  font: normal normal normal 14px/26px Cairo;
+  color: $color-dark;
+}
+
+.book-btn {
+  background-color: $color-dark-tint;
+  font: normal normal bold 16px/17px Almarai;
+  color: #fff;
+  display: inline-block;
+  padding: 13px;
+  min-width: 154px;
+}
+
+.container {
+  padding: 50px 37px;
+}
+
+.card {
+  padding: 1rem;
+  margin-bottom: 2rem;
+  border-radius: 0;
+  @include shadow-2;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  @include respond(lg) {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  &.terms {
+    display: flex;
+    flex-direction: column;
+  }
+  > div:first-child {
+    display: flex;
+    flex-direction: column;
+    @include respond(sm) {
+      flex-direction: row;
+    }
+    > div {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+  > div:last-child {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    @include respond(lg) {
+      flex-direction: column;
+      justify-content: flex-start;
+      gap: 10px;
+    }
+  }
+}
+
+.color-red {
+  color: red;
+}
+
+.price {
+  color: #b38e55;
+  font: normal normal bold 24px/45px Cairo;
+}
+
+.vehicle-img {
+  height: 150px;
+  margin: 0 10px;
+}

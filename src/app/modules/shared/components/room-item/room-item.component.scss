@@ -1,0 +1,180 @@
+@import "utilities/variables";
+@import "utilities/mixins";
+
+.room {
+  &__details {
+    &--item {
+      &.only_one_room {
+        height: 100% !important;
+      }
+      padding: 130px 15px 15px;
+      background-color: $color-secondary-tint;
+      position: relative;
+      overflow: hidden;
+      @include shadow-2;
+      @include respond(xl) {
+        display: flex;
+        padding: 0;
+        width: 100%;
+        box-shadow: none;
+        border-radius: 0;
+        margin: 0;
+      }
+    }
+  }
+  &__info {
+    padding-bottom: 10px;
+    border-bottom: 1px solid $color-dark-shade;
+
+    @include respond(xl) {
+      padding: 0;
+      flex: 2;
+      border-left: 1px solid $color-dark-shade;
+      border-right: 1px solid $color-dark-shade;
+    }
+
+    &--cell {
+      @include respond(xl) {
+        padding: 16px;
+      }
+    }
+
+    &--img > img {
+      height: 130px;
+      width: 100%;
+      object-fit: fill;
+      position: absolute;
+      top: 0;
+      left: 0;
+
+      @include respond(xl) {
+        position: static;
+      }
+    }
+  }
+  &__options-price {
+    @include respond(xl) {
+      flex: 5;
+      height: 100%;
+    }
+    &--item {
+      &.only_one_room {
+        height: 100% !important;
+      }
+      padding: 10px 0;
+      border-bottom: 1px solid $color-dark-shade;
+
+      @include respond(xl) {
+        display: flex;
+        padding: 0;
+        border-bottom: 0;
+      }
+
+      &:last-child {
+        padding: 10px 0 0;
+        border-bottom: 0;
+        @include respond(xl) {
+          padding: 0;
+          border-bottom: 0;
+        }
+      }
+    }
+  }
+
+  &__options {
+    @include respond(xl) {
+      flex: 3;
+      border-left: 1px solid $color-dark-shade;
+    }
+
+    &:not(:last-child) {
+      @include respond(xl) {
+        border-bottom: 1px solid $color-dark-shade;
+      }
+    }
+
+    &--cell {
+      @include respond(xl) {
+        padding: 16px;
+      }
+    }
+    &--list {
+      display: flex;
+      flex-direction: column;
+      row-gap: 5px;
+      @include respond(xl) {
+        row-gap: 8px;
+        margin-bottom: 8px;
+      }
+      & > li {
+        display: flex;
+        align-items: center;
+        column-gap: 7px;
+
+        & > i {
+          color: $color-primary;
+        }
+      }
+    }
+  }
+
+  &__price {
+    @include respond(xl) {
+      flex: 2;
+      border-bottom: 1px solid $color-dark-shade;
+      border-left: 1px solid $color-dark-shade;
+    }
+
+    &--cell {
+      display: flex;
+      flex-direction: column;
+      align-content: center;
+      justify-content: space-between;
+      row-gap: 16px;
+      margin-top: 16px;
+      @include respond(xl) {
+        flex-direction: column;
+        padding: 16px;
+      }
+    }
+
+    &--type {
+      display: none;
+      @include respond(xl) {
+        display: block;
+      }
+    }
+
+    &--cta {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      column-gap: 5px;
+
+      @include respond(xl) {
+        width: 100%;
+      }
+
+      &-box {
+        height: 42px;
+        width: 42px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 26px;
+        color: $color-secondary-tint;
+        &.show {
+          color: $color-dark-tint;
+          background-color: $color-secondary;
+          border: 0.7px solid $color-dark-tint;
+          font-size: 22px;
+          font-weight: bold;
+          flex: 1;
+        }
+      }
+    }
+  }
+}
+.color-red{
+  color: red;
+}

@@ -1,0 +1,59 @@
+<div class="transport-booking">
+  <div class="transport-booking__landing">
+    <div class="transport-booking__intro">
+      <h2 class="transport-booking-big-heading">
+        {{ "TRANSPORT_BOOKING.BODY.TITLE.NORMAL" | translate }}
+        <span class="primary"
+          >{{ "TRANSPORT_BOOKING.BODY.TITLE.HIGHLIGHT" | translate }}
+        </span>
+      </h2>
+      <div class="transport-booking__choice-card">
+        <app-transport-booking-search-bar
+          (search)="goToSearch($event)"
+        ></app-transport-booking-search-bar>
+      </div>
+    </div>
+  </div>
+  <div class="transport-booking__companies flex flex-col">
+    <h2 class="transport-booking-main-heading">
+      {{ "TRANSPORT_BOOKING.BODY.CAROUSAL.TITLE" | translate }}
+    </h2>
+    <div class="transport-booking__companies--list">
+      <img src="assets/images/transport-company1.png" alt="transport company" />
+      <img src="assets/images/transport-company2.png" alt="transport company" />
+      <img src="assets/images/transport-company3.png" alt="transport company" />
+      <img src="assets/images/transport-company4.png" alt="transport company" />
+      <img src="assets/images/transport-company5.png" alt="transport company" />
+      <img src="assets/images/transport-company6.png" alt="transport company" />
+    </div>
+  </div>
+
+  <div class="transport-booking__mail">
+    <div class="transport-booking__mail--content flex flex-col">
+      <div class="transport-booking__mail--text flex flex-col">
+        <h2 class="transport-booking-main-heading white">
+          {{ "TRANSPORT_BOOKING.BODY.MAIL.TITLE" | translate }}
+        </h2>
+        <h2 class="transport-booking-heading-1">
+          {{ "TRANSPORT_BOOKING.BODY.MAIL.UNDERTITLE" | translate }}
+        </h2>
+      </div>
+      <div class="transport-booking__mail--form flex">
+        <input
+          [(ngModel)]="email"
+          type="email"
+          class="transport-booking__mail--input"
+          placeholder="{{
+            'TRANSPORT_BOOKING.BODY.MAIL.PLACEHOLDER' | translate
+          }}"
+        />
+        <button
+          (click)="onSubscribeToNewLetter()"
+          class="btn btn-secondary-tint-border btn-16-16 btn-bold btn-almarai"
+        >
+          {{ "TRANSPORT_BOOKING.BODY.MAIL.REGISTER" | translate }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,195 @@
+@import "../../../../../assets/styles/utilities/mixins";
+@import "../../../../../assets/styles/utilities/variables";
+
+:host {
+  .header {
+    height: 80px;
+    padding: 18px 37px;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+    background-color: $color-secondary-tint;
+    @include shadow-1;
+
+    @include respond(xl) {
+      border-bottom: 2px solid $color-secondary-shade;
+      box-shadow: none;
+    }
+
+    &__logo {
+      .logo {
+        width: 120px;
+        height: 42px;
+      }
+    }
+
+    &__container {
+      align-items: center;
+      @include respond(xl) {
+        padding-bottom: 0;
+        align-items: flex-start;
+      }
+
+      &.center {
+        justify-content: center;
+      }
+    }
+
+    &__toggle {
+      position: absolute;
+      left: 37px;
+      font-size: 30px;
+
+      @include respond(xl) {
+        display: none;
+      }
+    }
+
+    .cta {
+      padding: 37px 37px 24px;
+
+      &__container {
+        row-gap: 16px;
+        padding-bottom: 10px;
+        border-bottom: 2px solid $color-secondary-shade;
+      }
+      @include respond(xl) {
+        width: 20%;
+        padding: 0;
+        flex-direction: row;
+        column-gap: 1.6rem;
+        position: absolute;
+        left: 37px;
+        top: 20px;
+      }
+    }
+
+    &__return {
+      position: absolute;
+      right: 37px;
+      transform: rotate(-90deg);
+      font-size: 30px;
+
+      @include respond(xl) {
+        display: none;
+      }
+    }
+    &__close {
+      position: absolute;
+      left: 37px;
+      top: 28px;
+      transform: rotate(-90deg);
+
+      @include respond(xl) {
+        display: none;
+      }
+
+      &--btn {
+        height: 20px;
+      }
+    }
+  }
+
+  .nav {
+    &__list {
+      row-gap: 24px;
+      @include respond(xl) {
+        column-gap: 32px;
+        row-gap: 0px;
+      }
+    }
+    &__item {
+      cursor: pointer;
+      padding: 5px 37px 5px 0;
+      @include respond(xl) {
+        padding: 0 0 25px 0;
+      }
+      &.active {
+        color: $color-primary;
+        background-color: $color-secondary;
+        border-right: 5px solid $color-primary;
+        @include respond(xl) {
+          background-color: transparent;
+          border-right: 0;
+          border-bottom: 4px solid $color-primary;
+        }
+      }
+    }
+  }
+
+  .nav-mob {
+    overscroll-behavior-y: contain;
+    overflow-y: auto;
+    @include respond(lg) {
+      display: none;
+    }
+    &__container {
+      overscroll-behavior-y: contain;
+      overflow-y: auto;
+
+      display: block;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 74px;
+      bottom: 0;
+      background-color: $color-secondary-tint;
+      z-index: 10000;
+    }
+
+    &__bg {
+      overscroll-behavior-y: contain;
+      overflow-y: auto;
+      display: block;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba($color-dark, 0.7);
+    }
+  }
+
+  .nav-web {
+    display: none;
+
+    @include respond(xl) {
+      display: flex;
+      width: 100%;
+    }
+  }
+  .pages {
+    &__popup {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: rgba($color-dark-tint, 0.5);
+      z-index: 100000;
+
+      app-signin,
+      app-forgot-password {
+        @include respond(xl) {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          z-index: 100001;
+        }
+      }
+    }
+
+    &__bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 100000;
+    }
+  }
+}

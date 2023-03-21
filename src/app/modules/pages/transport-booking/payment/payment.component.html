@@ -1,0 +1,324 @@
+<div class="info-pay">
+  <div class="main-container">
+    <app-card-loader
+      class="info-pay__container grid"
+      *ngIf="(transportationService.state$ | async)?.loading"
+    ></app-card-loader>
+    <div class="info-pay__container">
+      <div class="vehicle__item">
+        <div>
+          <img
+            [src]="
+              (this.transportationService.state$ | async)?.data?.VehiclePicture
+            "
+            class="vehicle__img"
+            alt="vehicle"
+          />
+
+          <div class="vehicle__details">
+            <div class="vehicle__hotel">
+              <div class="vehicle__hotel--header">
+                <h2 class="hotel-item-name">
+                  {{
+                    isRtl
+                      ? (this.transportationService.state$ | async)?.data
+                          ?.VehicleNameAr
+                      : (this.transportationService.state$ | async)?.data
+                          ?.VehicleName
+                  }}
+                </h2>
+              </div>
+              <div class="vehicle__location d-flex flex-column">
+                <h3 class="hotel-item-type-date">
+                  {{ "TRANSPORT_BOOKING.DETAILS.TRACK" | translate }}:
+                  {{
+                    isRtl
+                      ? (this.transportationService.state$ | async)?.data
+                          ?.ActionNameAr
+                      : (this.transportationService.state$ | async)?.data
+                          ?.ActionName
+                  }}
+                </h3>
+                <h3 class="hotel-item-type-date">
+                  {{ "TRANSPORT_BOOKING.DETAILS.CATEGORY" | translate }}:
+                  {{
+                    isRtl
+                      ? (this.transportationService.state$ | async)?.data
+                          ?.CategoryNameAr
+                      : (this.transportationService.state$ | async)?.data
+                          ?.CategoryName
+                  }}
+                </h3>
+                <h3 class="hotel-item-type-date">
+                  {{
+                    "TRANSPORT_BOOKING.DETAILS.RESERVATION_DATE" | translate
+                  }}:
+                  {{ transportReservationDate | date: "yyyy/MM/dd" }}
+                </h3>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <h3 class="price">
+            {{ (this.transportationService.state$ | async)?.data.Price }} ريال
+          </h3>
+        </div>
+      </div>
+
+      <div class="info__form-container">
+        <ng-container *ngIf="paymentState === 'CUSTOMER_INFORMATION'">
+          <form
+            [formGroup]="customerForm"
+            class="info__form"
+            (ngSubmit)="saveCustomerInformation()"
+          >
+            <h2 class="book-main-heading info__heading">
+              {{ "INFOPAY.INOFBOOKING" | translate }}
+            </h2>
+            <div class="customerInformationInputsContainer">
+              <div>
+                <input
+                  formControlName="FirstName"
+                  name="FirstName"
+                  class="form-control primary-input"
+                  type="text"
+                  required
+                  placeholder="{{ 'INPUTS.FIRSTNAME' | translate }}"
+                />
+                <div
+                  class="app-messages error"
+                  *ngIf="
+                    customerForm.controls['FirstName'].touched &&
+                    customerForm.controls['FirstName'].invalid
+                  "
+                >
+                  {{ "Validation.Required" | translate }}
+                </div>
+              </div>
+              <div>
+                <input
+                  class="form-control primary-input"
+                  formControlName="LastName"
+                  name="LastName"
+                  type="text"
+                  placeholder="{{ 'INPUTS.LASTNAME' | translate }}"
+                />
+                <div
+                  class="app-messages error"
+                  *ngIf="
+                    customerForm.controls['LastName'].touched &&
+                    customerForm.controls['LastName'].invalid
+                  "
+                >
+                  {{ "Validation.Required" | translate }}
+                </div>
+              </div>
+              <div>
+                <input
+                  class="form-control primary-input"
+                  formControlName="Email"
+                  name="Email"
+                  type="email"
+                  placeholder="{{ 'INPUTS.MAIL' | translate }}"
+                />
+                <div
+                  class="app-messages error"
+                  *ngIf="
+                    customerForm.controls['Email'].touched &&
+                    customerForm.controls['Email'].invalid
+                  "
+                >
+                  {{ "Validation.Pattern" | translate }}
+                </div>
+              </div>
+
+              <div>
+                <input
+                  class="form-control primary-input"
+                  type="text"
+                  formControlName="Phone"
+                  name="Phone"
+                  required
+                  placeholder="{{ 'INPUTS.PHONE' | translate }}"
+                />
+                <div
+                  class="app-messages error"
+                  *ngIf="
+                    customerForm.controls['Phone'].touched &&
+                    customerForm.controls['Phone'].invalid
+                  "
+                >
+                  {{ "Validation.Required" | translate }}
+                </div>
+              </div>
+              <div>
+                <input
+                  class="form-control primary-input"
+                  type="number"
+                  formControlName="PassengersNumber"
+                  name="passengersNumber"
+                  required
+                  min="1"
+                  [max]="
+                    (this.transportationService.state$ | async)?.data
+                      .VehicleSeatsNumber
+                  "
+                  placeholder="{{ 'INPUTS.PASSENGERS_NUMBER' | translate }}"
+                />
+                <div class="book-danger">
+                  {{ "PAYMENT.VEHICLE_SEATS_NUMBER" | translate }}
+                  {{
+                    (this.transportationService.state$ | async)?.data
+                      .VehicleSeatsNumber
+                  }}
+                </div>
+                <div
+                  class="app-messages error"
+                  *ngIf="
+                    customerForm.controls['PassengersNumber'].touched &&
+                    customerForm.controls['PassengersNumber']!['errors'] &&
+                    (customerForm.controls['PassengersNumber']!['errors']![
+                      'required'
+                    ] ||
+                      customerForm.controls['PassengersNumber']!['errors']![
+                        'min'
+                      ])
+                  "
+                >
+                  {{ "Validation.Required" | translate }}
+                </div>
+                <div
+                  class="app-messages error"
+                  *ngIf="
+                    customerForm.controls['PassengersNumber'].touched &&
+                    customerForm.controls['PassengersNumber']!['errors'] &&
+                    customerForm.controls['PassengersNumber']!['errors']!['max']
+                  "
+                >
+                  {{ "Validation.EXCEEDED_VEHICLE_SEATS" | translate }}
+                </div>
+              </div>
+              <div class="set-time-control">
+                <label>
+                  {{ "PAYMENT.CHOOSE_RESERVATION_TIME" | translate }}
+                </label>
+                <timepicker formControlName="Time" [showSpinners]="false" [showMeridian]="false"></timepicker>
+                <div
+                  class="app-messages error pt-1"
+                  *ngIf="
+                    customerForm.controls['Time'].touched &&
+                    customerForm.controls['Time'].invalid
+                  "
+                >
+                  {{ "Validation.Required" | translate }}
+                </div>
+              </div>
+              <div class="feedback__cta flex flex-col">
+                <h4 class="book-main-heading feedback__heading">
+                  {{ "INFOPAY.DEMANDES" | translate }}
+                </h4>
+
+                <textarea
+                  type="text"
+                  name="notes"
+                  class="feedback__textarea"
+                  placeholder="{{ 'INFOPAY.DEMANDESPLACEHOLDER' | translate }}"
+                ></textarea>
+
+                <p class="book-danger feedback__claim">
+                  {{ "INFOPAY.WARNING" | translate }}
+                </p>
+
+                <button
+                  type="submit"
+                  class="btn btn-dark btn-12-16 btn-bold btn-almarai"
+                >
+                  {{ "INFOPAY.PAY" | translate }}
+                </button>
+              </div>
+
+              <!--             <button
+                class="btn btn-secondary-shade-border-dark btn-12-16 btn-bold btn-almarai"
+                routerLink="/search"
+              >
+                {{ "INFOPAY.BACK" | translate }}
+              </button> -->
+            </div>
+          </form>
+        </ng-container>
+        <ng-container *ngIf="paymentState === 'BANK_INFORMATION'">
+          <div class="paiement__container flex flex-col">
+            <div class="paiement__bank">
+              <h4 class="book-main-heading">
+                {{ "PAYMENT.BANK" | translate }}
+              </h4>
+              <p class="book-heading-3">
+                {{ "PAYMENT.CHOOSEBANK" | translate }}
+              </p>
+
+              <form
+                [formGroup]="bankForm"
+                *ngIf="
+                  !(bankService.state$ | async)?.empty &&
+                  (bankService.state$ | async)?.data &&
+                  (bankService.state$ | async)?.data.length > 0
+                "
+                class="paiement__form flex flex-col"
+                (ngSubmit)="book()"
+              >
+                <div
+                  *ngFor="let item of (bankService.state$ | async)?.data"
+                  class="form-control"
+                >
+                  <input
+                    class="paiement__input radio"
+                    formControlName="bank"
+                    [value]="item.Id"
+                    name="bank"
+                    type="radio"
+                    id="bank{{ item.Id }}"
+                  />
+                  <label
+                    for="bank{{ item.Id }}"
+                    class="book-heading-4"
+                    for="bank1"
+                    >{{ item.AccountNameAr }} - {{ item.BankNameAr }}
+                  </label>
+                </div>
+                <div
+                  class="app-messages error"
+                  *ngIf="
+                    bankForm.controls['bank'].touched &&
+                    bankForm.controls['bank'].invalid
+                  "
+                >
+                  {{ "Validation.Required" | translate }}
+                </div>
+
+                <div class="paiement__cta flex flex-col">
+                  <button
+                    class="btn btn-dark btn-bold btn-12-16 btn-almarai"
+                    type="submit"
+                  >
+                    {{ "PAYMENT.NEXT" | translate }}
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </ng-container>
+        <ng-container *ngIf="paymentState === 'BOOK_RESULT'">
+          <div class="book-response success-response" *ngIf="isBookSuccess">
+            <i class="icon-check_circle_outline_black_24dp"></i>
+            <div>{{ "MESSAGES.PAYMENT_SUCCEED" | translate }}</div>
+          </div>
+          <!--           <div class="book-response error-response" *ngIf="!isBookSuccess">
+            <i class="icon-clear_black_24dp"></i>
+            <div>{{ "MESSAGES.PAYMENT_FAILED" | translate }}</div>
+          </div> -->
+        </ng-container>
+      </div>
+    </div>
+  </div>
+</div>

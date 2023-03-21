@@ -1,0 +1,23 @@
+@import "utilities/variables";
+@import "utilities/mixins";
+
+:host {
+  width: fit-content;
+  .state {
+    border-radius: 5px;
+    padding: 2px 4px;
+    color: $color-secondary-tint;
+    align-items: center;
+    width: fit-content;
+    font-size: 8px;
+    &.warning {
+      background-color: #f6b12d;
+    }
+    &.success {
+      background-color: #00800a;
+    }
+    &.danger {
+      background-color: #d11317;
+    }
+  }
+}

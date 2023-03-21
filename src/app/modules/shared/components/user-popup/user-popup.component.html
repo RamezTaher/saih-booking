@@ -1,0 +1,24 @@
+<div (clickOutside)="openModal = false">
+  <div class="profile cursor-pointer" (click)="openModal = !openModal">
+    <div>
+      <img src="/assets/icons/user-avatar.svg" />
+    </div>
+    <div class="user-name {{ color_class }}">
+      {{ storageService.user?.FirstName }} {{ storageService.user?.LastName }}
+    </div>
+  </div>
+  <div class="main" *ngIf="openModal">
+    <div class="links">
+      <div class="link">
+        <a [routerLink]="['/profile']" routerLinkActive="active" (click)="openModal = !openModal">
+          <div>{{ "HEADER.Profile" | translate }}</div>
+        </a>
+      </div>
+      <div class="link" (click)="logout()" (click)="openModal = !openModal">
+        <a>
+          <div>{{ "HEADER.Logout" | translate }}</div>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,247 @@
+@import "utilities/variables";
+@import "utilities/mixins";
+
+:host {
+  .search {
+    position: relative;
+    height: 100%;
+    min-height: 100vh;
+
+    &__hotel-container {
+      @include respond(xl) {
+        display: grid;
+        grid-template-columns: repeat(6, minmax(0, 1fr));
+      }
+    }
+
+    &__vehicles-filter {
+      grid-column: 1 / 3;
+      background-color: $color-secondary-tint;
+      margin-top: 3px;
+    }
+    &__vehicles-all {
+      padding: 37px;
+      @include respond(xl) {
+        grid-column: 3 / 7;
+        padding: 30px 85px 100px 123px;
+        background-color: $color-secondary;
+        margin-top: 3px;
+      }
+    }
+
+    &__hotel-header {
+      display: none;
+
+      @include respond(xl) {
+        display: flex;
+        margin-bottom: 16px;
+        cursor: pointer;
+      }
+
+      &--container {
+        position: relative;
+      }
+      &--filter {
+        display: flex;
+        align-items: center;
+        column-gap: 0.5rem;
+      }
+      &--class {
+        @include respond(xl) {
+          display: block;
+          position: absolute;
+          left: 0;
+          top: 130%;
+          background-color: $color-secondary-tint;
+          width: 17%;
+          z-index: 100;
+          padding: 13px;
+        }
+
+        &-content {
+          row-gap: 1rem;
+        }
+        &-item {
+          width: 100%;
+          text-align: center;
+          font-size: 12px;
+          font-weight: 500;
+          padding-bottom: 0.7rem;
+          cursor: pointer;
+          &:not(:last-child) {
+            border-bottom: 1px solid $color-secondary-shade;
+          }
+        }
+      }
+    }
+
+    &__btn {
+      display: none;
+      @include respond(xl) {
+        display: block;
+        @include shadow-2;
+      }
+    }
+
+    app-paginator {
+      display: block;
+      @include respond(xl) {
+        display: none;
+      }
+    }
+
+    &__btns {
+      display: flex;
+      column-gap: 10px;
+      padding: 0 37px;
+
+      @include respond(xl) {
+        display: none;
+      }
+    }
+
+    &__vehicles {
+      row-gap: 16px;
+      padding-bottom: 16px;
+
+      @include respond(md) {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 32px;
+      }
+    }
+
+    &__hotel {
+      @include respond(xl) {
+        width: 324px;
+      }
+    }
+  }
+  .choice {
+    background-color: $color-primary;
+    color: $color-secondary-tint;
+    @include shadow-1;
+    @include respond(xl) {
+      background-color: $color-secondary-tint;
+    }
+
+    .main-container {
+      @include respond(xl) {
+        display: none;
+      }
+    }
+
+    &-container {
+      padding: 0 120px;
+      background-color: $color-secondary-tint;
+      @include shadow-2;
+    }
+    &__text {
+      &-1 {
+        font-size: 12px;
+        font-weight: bold;
+        line-height: 23px;
+      }
+      &-2 {
+        font-size: 10px;
+        font-weight: bold;
+        line-height: 19px;
+        display: flex;
+        align-items: center;
+        flex: 1;
+        column-gap: 7px;
+      }
+    }
+
+    &__mob {
+      padding: 0.5rem 0;
+      column-gap: 20px;
+
+      & > i {
+        font-size: 25px;
+      }
+
+      &--details {
+        width: 100%;
+      }
+    }
+
+    &-mobile {
+      @include respond(xl) {
+        display: none;
+      }
+
+      &-bg {
+        display: block;
+        position: fixed;
+        top: 80px;
+        left: 0;
+        right: 0;
+        z-index: 10;
+        background-color: $color-secondary-tint;
+        padding: 37px;
+      }
+    }
+
+    &-desktop {
+      display: none;
+      @include respond(xl) {
+        display: block;
+        padding: 0 20px;
+        @include shadow-1;
+      }
+    }
+
+    &__bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.7);
+      z-index: 8;
+      @include respond(xl) {
+        display: none;
+      }
+    }
+  }
+
+  .filter {
+    &-mobile {
+      display: block;
+      position: fixed;
+      top: 0rem;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: $color-secondary-tint;
+      overflow-y: scroll;
+      z-index: 9999;
+      @include respond(xl) {
+        display: none;
+      }
+    }
+
+    &-desktop {
+      display: none;
+      @include respond(xl) {
+        display: block;
+      }
+    }
+  }
+
+  .class {
+    &-mobile {
+      display: block;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 9999;
+      @include respond(xl) {
+        display: none;
+      }
+    }
+  }
+}

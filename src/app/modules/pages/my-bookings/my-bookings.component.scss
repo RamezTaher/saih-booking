@@ -1,0 +1,117 @@
+@import "utilities/variables";
+@import "utilities/mixins";
+
+:host {
+  .page {
+    padding: 20px 37px 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    @include respond(xl) {
+      padding: 20px 138px;
+    }
+
+    &-search {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      padding: 16px;
+      @include shadow-2;
+      > div {
+        font-size: 16px;
+        font-weight: bold;
+        color: $color-dark;
+      }
+    }
+
+    &-body {
+      width: 100%;
+      &-list {
+        border: 1px solid #eee;
+
+        &.web {
+          display: none;
+          width: 100%;
+          @include shadow-2;
+          background-color: $color-secondary-tint;
+          @include respond(xl) {
+            display: block;
+          }
+
+          > table {
+            width: 100%;
+            border-collapse: separate;
+            font-weight: 700;
+            th,
+            td {
+              padding: 14px 18px;
+
+              height: 50px;
+              font-size: 10px;
+              text-align: start;
+              vertical-align: middle;
+            }
+            td {
+              cursor: pointer;
+            }
+
+            th {
+              background-color: $color-secondary;
+              font-size: 12px;
+              font-weight: bold;
+              color: $color-primary;
+            }
+            .address {
+              display: flex;
+              justify-content: flex-start;
+              gap: 8px;
+              align-items: center;
+              > i {
+                color: $color-primary;
+              }
+              &-title {
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                font-size: 12px;
+                font-weight: bold;
+                color: $color-primary;
+              }
+            }
+            .actions {
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              gap: 8px;
+              > button {
+                padding: 5px;
+                width: 30px;
+                height: 30px;
+                > i {
+                  font-size: 18px;
+                  color: $color-secondary-tint;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.linear-background {
+  animation-duration: 1s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
+  animation-name: placeHolderShimmer;
+  animation-timing-function: linear;
+  background: #f6f7f8;
+  background: linear-gradient(to right, #eeeeee 8%, #dddddd 18%, #eeeeee 33%);
+  background-size: 1000px 104px;
+  height: 24px;
+  width: 80%;
+  position: relative;
+  overflow: hidden;
+  border-radius: 16px;
+}

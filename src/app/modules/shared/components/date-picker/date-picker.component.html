@@ -1,0 +1,54 @@
+<ng-container *ngIf="type === 'range'">
+  <div
+    #daterangepicker="bsDaterangepicker"
+    bsDaterangepicker
+    [minDate]="today"
+    [bsConfig]="bsConfig"
+    [bsValue]="rangeDate"
+    (bsValueChange)="onValueChange($event)"
+    class="date-picker pointer"
+  >
+    <div class="flex flex-col">
+      <div class="flex justify-between items-center">
+        <h3 class="arrival picker-1">
+          <i class="icon-calendar_today_black_24dp"></i>
+          <div>{{ "HOME.HEAD.DATEARRQ" | translate }}</div>
+        </h3>
+        <h3 class="departure picker-1">
+          <div>{{ "HOME.HEAD.DATADEPARTQ" | translate }}</div>
+          <i class="icon-calendar_today_black_24dp"></i>
+        </h3>
+        <div class="arrival"></div>
+      </div>
+      <div class="dates">
+        <div class="picker-2">{{ rangeDate[0] | date: "longDate" }}</div>
+        <i class="icon-arrow_back_black_24dp primary"></i>
+        <div class="picker-2">{{ rangeDate[1] | date: "longDate" }}</div>
+      </div>
+    </div>
+  </div>
+</ng-container>
+<ng-container *ngIf="type === 'normal'">
+  <div
+  #datepicker="bsDatepicker"
+  bsDatepicker
+  [minDate]="today"
+  [bsConfig]="bsConfig"
+  [bsValue]="initDate"
+  (bsValueChange)="onValueChange($event)"
+  class="date-picker pointer"
+>
+  <div class="flex flex-col">
+    <div class="flex justify-between items-center">
+      <h3 class="picker-1">
+        <i class="icon-calendar_today_black_24dp"></i>
+        <div>{{ "TRANSPORT_BOOKING.SEARCH.BOOKING_DATE" | translate }}</div>
+      </h3>
+    </div>
+    <div class="dates">
+      <div class="picker-2">{{ initDate | date: "longDate" }}</div>
+      <i class="icon-arrow_back_black_24dp primary"></i>
+    </div>
+  </div>
+</div>
+</ng-container>

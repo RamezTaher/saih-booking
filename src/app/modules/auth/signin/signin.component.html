@@ -1,0 +1,137 @@
+<div class="signin">
+  <div class="signin__card">
+    <div class="signin__header flex items-center justify-between">
+      <h2 class="signin__auth--header auth-main-heading">
+        {{ "AUTH.SIGNIN.TITLE" | translate }}
+      </h2>
+
+      <i
+        class="icon-clear_black_24dp signin__close pointer"
+        (click)="onClose($event)"
+      ></i>
+    </div>
+
+    <div class="signin__form">
+      <form [formGroup]="user_form" (ngSubmit)="login()">
+        <div>
+          <div class="form-control">
+            <i class="icon-email_black_24dp-3 primary-input-img"></i>
+            <input
+              class="primary-input"
+              type="email"
+              required
+              placeholder="{{ 'INPUTS.MAIL' | translate }}"
+              formControlName="UserName"
+            />
+          </div>
+          <div
+            class="app-messages error"
+            *ngIf="
+              submitted && user_form.controls['UserName'].hasError('required')
+            "
+          >
+            {{ "Validation.Required" | translate }}
+          </div>
+          <div
+            class="app-messages error"
+            *ngIf="submitted && user_form.controls['UserName']?.invalid"
+          >
+            {{ "Validation.Pattern" | translate }}
+          </div>
+        </div>
+        <div>
+          <div class="form-control">
+            <i class="icon-lock_black_24dp primary-input-img"></i>
+
+            <i
+              class="primary-input-img-2 pointer"
+              [ngClass]="
+                isPasswordShown
+                  ? 'icon-visibility_off_black_24dp'
+                  : 'icon-visibility_black_24dp'
+              "
+              (click)="isPasswordShown = !isPasswordShown"
+            ></i>
+            <input
+              class="primary-input"
+              [type]="isPasswordShown ? 'text' : 'password'"
+              required
+              placeholder="{{ 'INPUTS.PASS' | translate }}"
+              formControlName="Password"
+            />
+          </div>
+          <div
+            class="app-messages error"
+            *ngIf="
+              submitted && user_form.controls['Password'].hasError('required')
+            "
+          >
+            {{ "Validation.Required" | translate }}
+          </div>
+          <!--           <app-http-error-message class="pt-1" [errorObject]="(httpService.state$ | async)?.error && submitted" ></app-http-error-message>
+ -->
+          <p
+            class="app-messages error"
+            *ngIf="
+              (httpService.state$ | async)?.success &&
+              !(httpService.state$ | async)?.data?.success &&
+              submitted
+            "
+          >
+            {{ "Validation.IncorrectData" | translate }}
+          </p>
+        </div>
+        <div class="signin__under-form flex items-center justify-between">
+          <button
+            type="button"
+            class="auth-heading-2 pointer"
+            (click)="onClose($event)"
+          >
+            {{ "AUTH.SIGNIN.REGISTER" | translate }}
+          </button>
+          <button
+            type="button"
+            class="pointer auth-heading-2 forgot-1 pointer"
+            (click)="onOpenForgot($event)"
+          >
+            {{ "AUTH.SIGNIN.FORGET" | translate }}
+          </button>
+          <button
+            type="button"
+            class="pointer auth-heading-2 forgot-2 pointer"
+            routerLink="/forgot"
+          >
+            {{ "AUTH.SIGNIN.FORGET" | translate }}
+          </button>
+        </div>
+        <button
+          type="submit"
+          class="pointer signin__btn btn btn-primary btn-bold btn-12-12"
+        >
+          {{ "AUTH.SIGNIN.TITLE" | translate }}
+        </button>
+      </form>
+    </div>
+
+    <div class="signin__footer">
+      <p class="auth-text">
+        {{ "AUTH.SIGNIN.FOOTER1" | translate }}
+        <span
+          class="primary"
+          [routerLink]="['/terms-of-use']"
+          (click)="onClose($event)"
+        >
+          {{ "AUTH.SIGNIN.TERMS_OF_USE" | translate }}</span
+        >
+        {{ "AUTH.SIGNIN.AND" | translate }}
+        <span
+          class="primary"
+          [routerLink]="['/privacy-policy']"
+          (click)="onClose($event)"
+          >{{ "AUTH.SIGNIN.PRIVACY_POLICY" | translate }}</span
+        >
+        {{ "AUTH.SIGNIN.FOOTER2" | translate }}
+      </p>
+    </div>
+  </div>
+</div>

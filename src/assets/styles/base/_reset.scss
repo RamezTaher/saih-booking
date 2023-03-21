@@ -1,0 +1,27 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+a {
+  text-decoration: none;
+}
+
+button {
+  border: 0;
+  background: transparent;
+  outline: 0;
+}
+
+li {
+  list-style-type: none;
+}
+
+body {
+  box-sizing: border-box;
+  font-family: "Cairo", sans-serif;
+  font-weight: 400;
+}

@@ -1,0 +1,27 @@
+<div class="directions">
+  <div class="directions__header">
+    <div class="main-container flex justify-center">
+      <h2 class="pop-big-heading">
+        {{ "TRANSPORT_BOOKING.SEARCH.TRACKS" | translate }}
+      </h2>
+      <div
+        class="directions__closeBtn"
+        (click)="changeAction({ Id: 0, NameAr: '', Name: '' })"
+      >
+        <i class="icon-clear_black_24dp"></i>
+      </div>
+    </div>
+  </div>
+  <div class="directions__content flex flex-col">
+    <li
+      *ngFor="let item of (actionsService.state$ | async)?.data"
+      class="directions__item pop-heading-3 pointer"
+      (click)="changeAction(item)"
+    >
+      <i class="icon-map-pin directions__icon"></i>
+      <div>
+        {{ storageService.lang == 'ar' ? item.NameAr : item.Name }}
+      </div>
+    </li>
+  </div>
+</div>

@@ -1,0 +1,57 @@
+<div class="pagination flex flex-row-reverse items-center justify-between">
+  <button
+    class="pagination--nextbox box"
+    [ngClass]="{ disabled: currentPage === getPageCount() }"
+    [disabled]="currentPage === getPageCount()"
+    (click)="next()"
+  >
+    <i class="icon-chevron_left_black_24dp pagination-prev"></i>
+  </button>
+
+  <div class="pagination-pages">
+    <ng-container *ngIf="currentPage > 2">
+      <div
+        *ngFor="let item of pages(getPageCount()).slice(0, 2)"
+        class="pagination-pages-item"
+      >
+        {{ item }}
+      </div>
+    </ng-container>
+
+    <div
+      *ngFor="
+        let item of pages(getPageCount()).slice(
+          currentPage - 1,
+          currentPage + 1
+        )
+      "
+    >
+      <div
+        *ngIf="item < getPageCount()"
+        class="pagination-pages-item"
+        [ngClass]="{ active: item === currentPage }"
+      >
+        {{ item }}
+      </div>
+    </div>
+
+    <div
+      *ngIf="getPageCount() > 3"
+      class="pagination-pages-item"
+      [ngClass]="{ active: getPageCount() === currentPage }"
+    >
+      {{ getPageCount() }}
+    </div>
+  </div>
+
+  <button
+    [ngClass]="{ disabled: currentPage <= 1 }"
+    [disabled]="currentPage <= 1"
+    (click)="previous()"
+    class="pagination--prevbox box"
+  >
+    <i class="icon-chevron_right_black_24dp pagination-next"></i>
+  </button>
+</div>
+
+

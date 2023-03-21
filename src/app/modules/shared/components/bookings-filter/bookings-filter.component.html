@@ -1,0 +1,52 @@
+<form [formGroup]="searchForm" class="filters">
+  <div class="input-form">
+    <i class="icon-search_black_24dp"></i>
+    <input
+      class="search"
+      formControlName="search"
+      [placeholder]="'INPUTS.SEARCH' | translate"
+      type="search"
+    />
+  </div>
+  <div class="input-form">
+    <input
+      (click)="isBookDateOpened = !isBookDateOpened"
+      class="date"
+      formControlName="date"
+      [placeholder]="'INPUTS.RES_AT' | translate"
+      type="text"
+      bsDatepicker
+      #dp="bsDatepicker"
+      bsDatepicker
+      [bsConfig]="bsConfig"
+    />
+    <i
+      [ngClass]="{ opened: isBookDateOpened }"
+      class="icon-expand_more_black_24dp"
+    ></i>
+  </div>
+  <div class="input-form">
+    <input
+      (click)="isBookDateOpened = !isBookDateOpened"
+      class="date"
+      [placeholder]="'INPUTS.TRAVEL_DATE' | translate"
+      type="text"
+      bsDatepicker
+      #dp="bsDatepicker"
+      bsDatepicker
+      [bsConfig]="bsConfig"
+    />
+    <i
+      [ngClass]="{ opened: isBookDateOpened }"
+      class="icon-expand_more_black_24dp"
+    ></i>
+  </div>
+
+  <app-custom-select
+    [config]="{ placeholder: 'INPUTS.RES_STATUS' | translate }"
+  ></app-custom-select>
+
+  <button (click)="search()" class="btn btn-dark" type="submit">
+    {{ "BUTTONS.SEARCH" | translate }}
+  </button>
+</form>

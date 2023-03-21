@@ -1,0 +1,35 @@
+.main{
+  nav{
+    height: 67px;
+    display: flex;
+    align-items: flex-end;
+    border: solid 1px #cbdaed;
+    .links{
+      // background:red;
+      margin:0px;
+      .link{
+        float:left;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 170px;
+        cursor: pointer;
+        list-style: none;
+        font-size: 16px;
+        font-weight: bold;
+        color:#8b8b8b;
+        &.active{
+          border-bottom: 3px solid #8B8B8B;
+          color: #8B8B8B;
+        }
+      }
+    }
+  }
+}
+
+.cards{
+  margin-left: 30px;
+}
+
+

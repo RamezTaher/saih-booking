@@ -1,0 +1,259 @@
+<div class="details">
+  <app-breadcrumb></app-breadcrumb>
+  <div class="details__all">
+    <div class="details__container">
+      <div class="details__header">
+        <div class="details__hotel">
+          <div class="details__hotel--name">
+            <h3 class="hotel-item-name">{{ hotel?.NameAr ?? hotel?.Name }}</h3>
+            <app-box-stars
+              class="details__hotel--stars flex items-center"
+              [stars]="hotel?.Stars"
+            ></app-box-stars>
+          </div>
+          <div class="details__hotel--location flex item-center">
+            <i class="icon-map-pin hotel-item-location"></i>
+            <h3 class="hotel-item-location">
+              {{ hotel?.AdressAr ?? hotel?.Adress }}
+            </h3>
+          </div>
+        </div>
+
+        <div class="details__show">
+          <!--  <i class="icon-favorite_black_24dp"></i> -->
+          <button class="btn btn-dark btn-16-16 btn-bold btn-almarai">
+            {{ "DETAILS.MOREOFFERS" | translate }}
+          </button>
+        </div>
+      </div>
+      <div class="details__imgs grid">
+        <div class="details__img-1">
+          <img
+            [src]="
+              hotel?.DefaultPicture != null
+                ? hotel?.DefaultPicture
+                : 'assets/icons/hotel.jpg'
+            "
+            alt=""
+            class="details__img"
+          />
+        </div>
+
+        <div class="details__img-map">
+          <google-map
+            *ngIf="this.hotel_gps"
+            width="100%"
+            [center]="{
+              lat: this.hotel_gps.geometry.location.lat,
+              lng: this.hotel_gps.geometry.location.lng
+            }"
+            [zoom]="12"
+          >
+            <map-marker
+              [position]="{
+                lat: this.hotel_gps.geometry.location.lat,
+                lng: this.hotel_gps.geometry.location.lng
+              }"
+            ></map-marker>
+          </google-map>
+        </div>
+
+        <div *ngIf="hotel?.Pictures[0]" class="details__img-2">
+          <img
+            [src]="
+              hotel?.Pictures[0].secure_url != null
+                ? hotel?.Pictures[0].secure_url
+                : 'assets/icons/hotel.jpg'
+            "
+            alt=""
+            class="details__img"
+          />
+        </div>
+
+        <div *ngIf="hotel?.Pictures[1]" class="details__img-3">
+          <img
+            [src]="
+              hotel?.Pictures[1].secure_url != null
+                ? hotel?.Pictures[1].secure_url
+                : 'assets/icons/hotel.jpg'
+            "
+            alt=""
+            class="details__img"
+          />
+        </div>
+
+        <div *ngIf="hotel?.Pictures[2]" class="details__img-4">
+          <img
+            [src]="hotel?.Pictures[2].secure_url"
+            alt=""
+            class="details__img"
+          />
+          <h2 class="details__img-last">
+            +{{ hotel?.Pictures.length - 3 }} {{ "DETAILS.PHOTOS" | translate }}
+          </h2>
+        </div>
+      </div>
+    </div>
+    <div class="details__carousal">
+      <carousel>
+        <slide *ngFor="let picture of hotel?.Pictures">
+          <img src="{{picture.secure_url}}" alt="first slide" style="display: block; width: 100%;">
+        </slide>
+      </carousel>
+    </div>
+
+    <div class="details__description flex flex-col">
+      <h4 class="details-main-heading">
+        {{ "DETAILS.DESCRIPTION" | translate }}
+      </h4>
+      <p
+        class="details-text-1 flex flex-col"
+        [ngClass]="showDesciption ? 'show' : 'hide'"
+      >
+        <span>
+          {{ hotel?.DescriptionAr ?? hotel?.Description }}
+        </span>
+      </p>
+      <div
+        class="details__description--show-more details-item primary cursor-pointer"
+        *ngIf="!showDesciption && (hotel?.DescriptionAr ?? hotel?.Description)"
+        (click)="this.showDesciption = true"
+      >
+        {{ "DETAILS.SHOWMORE" | translate }}
+      </div>
+      <span *ngIf="!(hotel?.DescriptionAr ?? hotel?.Description)">
+        لا يوجد وصف متاح حاليا
+      </span>
+    </div>
+
+    <div class="details__picker">
+      <app-choice-card [queries]="queries" (search)="updateSearch($event)"></app-choice-card>
+    </div>
+
+    <app-card-loader
+      *ngIf="(roomsService.state$ | async)?.loading"
+    ></app-card-loader>
+
+    <ng-container *ngIf="!(roomsService.state$ | async)?.loading">
+      <div class="details__room-container">
+        <div class="room flex flex-col">
+          <div class="room__table--container" *ngIf="rooms?.length > 0">
+            <div class="room__table flex flex-col">
+              <div class="room__table--row flex items-center">
+                <div class="room__table--info">
+                  <div class="room__table--cell">
+                    {{ "DETAILS.ROOMINFOS" | translate }}
+                  </div>
+                </div>
+                <div class="room__table--choice">
+                  <div class="room__table--cell">
+                    {{ "DETAILS.CHOICES" | translate }}
+                  </div>
+                </div>
+                <div class="room__table--price">
+                  <div class="room__table--cell">
+                    {{ "DETAILS.PRICE" | translate }}
+                  </div>
+                </div>
+                <div class="room__table--sum">
+                  <div class="room__table--cell">
+                    {{ "DETAILS.SUMPRICE" | translate }}
+                  </div>
+                </div>
+              </div>
+              <div class="room__table--items flex">
+                <div class="room__table--item">
+                  <app-room-item
+                    (onSelectRoom)="selectRooms()"
+                    [room]="item"
+                    [picture]="getRoomPicture(item.RoomTypeId)"
+                    [picture]="getRoomPicture(item.RoomTypeId)"
+                    *ngFor="let item of rooms"
+                  ></app-room-item>
+                </div>
+                <div class="room__table--btn">
+                  <div class="room__price pc">
+                    <div class="room__price--details">
+                      <div class="room__price--num hotel-item-price">
+                        {{ total }} ريال
+                      </div>
+                      <div class="room__price--num hotel-item-type-date">
+                        شامل الضرائب والرسوم
+                      </div>
+                    </div>
+                    <div class="room__price--cta">
+                      <button
+                        class="btn btn-dark btn-bold btn-16-16 btn-almarai"
+                        (click)="reservation()"
+                      >
+
+                        <span *ngIf="!rooms[0]?.Data[0]?.Request" >{{'SEARCH.BOOK_Now' | translate}}</span>
+                        <span *ngIf="rooms[0]?.Data[0]?.Request" >{{'SEARCH.RequestRoom' | translate}}</span>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="room__table--container" *ngIf="rooms?.length == 0">
+            لا توجد غرف متاحة حاليا
+          </div>
+        </div>
+      </div>
+    </ng-container>
+
+    <div class="details__services">
+      <div class="description__card">
+        <h2 class="details-main-heading description__heading">
+          {{ "DETAILS.SERVICES.TITLE" | translate }}
+        </h2>
+        <div class="description__items">
+          <div class="description__s1">
+            <h4 class="details-heading-2 description__s1--title">
+              {{ "DETAILS.SERVICES.EXTERNALS" | translate }}
+            </h4>
+            <ul
+              class="description__s1--items"
+              [ngClass]="showS1 ? 'show' : 'hide'"
+            >
+              <li
+                *ngFor="let item of hotel?.Facilities"
+                class="description__s1--item details-heading-1"
+              >
+                <i class="icon-check_circle_black_24dp"></i
+                >{{ item.NameAr ?? item.Name }}
+              </li>
+            </ul>
+
+            <span
+              class="description__show-more cursor-pointer"
+              *ngIf="!showS1"
+              (click)="this.showS1 = true"
+              >{{ "DETAILS.SHOWMORE" | translate }}
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="room__price">
+      <div class="room__price--details">
+        <div class="room__price--period hotel-item-sum">
+          {{ "DETAILS.SUMPRICE" | translate }}
+        </div>
+        <div class="room__price--num hotel-item-price">{{ total }} ريال</div>
+        <div class="room__price--type hotel-item-type-date">
+          شامل الضرائب والرسوم
+        </div>
+      </div>
+      <div class="room__price--cta">
+        <button
+          class="btn btn-dark btn-bold btn-24-24 btn-almarai"
+          (click)="reservation()"
+        >
+          {{ "DETAILS.BOOK" | translate }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

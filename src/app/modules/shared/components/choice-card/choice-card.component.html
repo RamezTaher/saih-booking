@@ -1,0 +1,94 @@
+<div class="choice__change">
+  <div class="choice__card-container">
+    <div class="choice__card flex flex-col">
+      <!-- Directions Only in Home  -->
+      <div
+        class="choice__directions pointer"
+        [ngClass]="{ 'directions-open': isDirectionsOpen }"
+        *ngIf="isDirectionsAvailable"
+      >
+        <div (click)="directionToggle()">
+          <h3 class="picker-1">
+            <i class="icon-place_black_24dp primary"></i>
+            <div>{{ "HOME.HEAD.DIRECTION" | translate }}</div>
+          </h3>
+
+          <div class="direction-list">
+            <div class="flex items-center justify-between">
+              <h2
+                class="picker-2"
+                [ngClass]="{ 'text-gray': !currentDirection }"
+              >
+                {{
+                  currentDirection
+                    ? currentDirection?.text
+                    : ("SEARCH.CHOISE_DIRECTION" | translate)
+                }}
+              </h2>
+              <div
+                class="chevron"
+                [ngClass]="{ 'directions-open': isDirectionsOpen }"
+              >
+                <i class="icon-expand_more_black_24dp primary"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div *ngIf="isDirectionsOpen" class="mobile">
+          <app-directions
+            (onChange)="changeDirection($event)"
+            [value]="queries?.city"
+          ></app-directions>
+        </div>
+        <div *ngIf="isDirectionsOpen" class="desktop">
+          <app-directions
+            (onChange)="changeDirection($event)"
+            [value]="queries?.city"
+          ></app-directions>
+        </div>
+      </div>
+
+      <!-- DatePicker  -->
+      <app-date-picker
+        [checkIn]="queries?.checkin"
+        [checkOut]="queries?.checkout"
+        (onChange)="changeDates($event)"
+      ></app-date-picker>
+
+      <!-- Promo Code  -->
+      <div class="choice__code">
+        <h3 class="picker-1">
+          <i class="icon-uniE901 primary"></i>
+          <div>{{ "HOME.HEAD.PROMOCODEQ" | translate }}</div>
+        </h3>
+        <input
+          [(ngModel)]="currentPromocode"
+          type="text"
+          class="picker-2"
+          placeholder="{{ 'HOME.HEAD.PROMOCODE' | translate }}"
+        />
+      </div>
+
+      <!-- Button  -->
+      <div class="choice__cta">
+        <button
+          (click)="onSearch()"
+          *ngIf="isSearchAvailable"
+          class="btn btn-primary btn-24-24 btn-bold"
+        >
+          <i class="icon-search_black_24dp white"></i>
+          <div class="only-pc">{{ "DETAILS.UPDATE" | translate }}</div>
+        </button>
+        <button
+          (click)="onSearch()"
+          *ngIf="!isSearchAvailable"
+          class="btn btn-primary btn-24-24 btn-bold"
+        >
+          <i class="icon-search_black_24dp white"></i>
+          <div class="only-pc">{{ "HOME.HEAD.SEARCH" | translate }}</div>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

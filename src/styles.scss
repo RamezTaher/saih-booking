@@ -1,0 +1,145 @@
+/* You can add global styles to this file, and also import other style files */
+
+/* Importing Bootstrap SCSS file. */
+
+/* Importing Datepicker SCSS file. */
+@import "utilities/variables";
+@import "utilities/mixins";
+@import "./assets/styles/components/date-picker";
+/* Importing Bootstrap SCSS file. */
+@import "~bootstrap/scss/bootstrap";
+
+.app-messages {
+  font-size: 14px;
+  text-align: right;
+  &.error {
+    color: red;
+  }
+  &.success {
+    color: green;
+  }
+}
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.whatsapp-floating {
+  text-decoration: none;
+  width: 4rem;
+  height: 4rem;
+  border-radius: 50%;
+  background: #00e676;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  align-items: center;
+  font-size: 3.5rem;
+  color: #fff !important;
+  box-shadow: 0 0 7px rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: 0 0 7px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0 0 7px rgba(0, 0, 0, 0.2);
+  -o-box-shadow: 0 0 7px rgba(0, 0, 0, 0.2);
+  position: fixed;
+  bottom: 2rem;
+  right: 5rem;
+  z-index: 9999;
+}
+.tooltip-special {
+  position: absolute;
+  font-size: 8px;
+  width: 110px;
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 9px;
+  text-align: center;
+  bottom: calc(100% + 10px);
+  border-radius: 3px;
+  color: #fff;
+}
+.whatsapp-floating :hover {
+  color: #fff !important;
+}
+.tooltip-special :hover {
+  color: #fff !important;
+}
+
+@media only screen and (max-width: 600px) {
+  .whatsapp-floating {
+    display: none;
+  }
+}
+
+.ngx-pagination {
+  padding-left: 0px !important;
+  margin-bottom: 0 !important;
+  display: flex !important;
+  gap: 4px !important;
+
+  > li {
+    background-color: transparent !important;
+    border-radius: 5px !important;
+
+    > a {
+      width: 100% !important;
+      height: 100% !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      color: $color-primary !important;
+      padding: 10px 15px !important;
+      border: 1px solid transparent !important;
+      &:hover {
+        background-color: rgba($color-primary, 0.3);
+        color: $color-primary;
+      }
+    }
+  }
+  .current {
+    border: 1px solid $color-primary !important;
+    color: $color-primary !important;
+    padding: 10px 15px !important;
+  }
+
+  .pagination-next,
+  .pagination-previous {
+    background-color: rgba($color-primary, 0.3) !important;
+    &.disabled {
+      background-color: $color-secondary-shade !important;
+      cursor: default !important;
+      padding: 10px 15px !important;
+      color: $color-secondary-tint !important;
+      border: 1px solid $color-secondary-shade !important ;
+    }
+    &::before,
+    &::after {
+      margin: 0 !important;
+    }
+    > a {
+      &::before,
+      &::after {
+        margin: 0 !important;
+      }
+    }
+  }
+  .small-screen {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 10px 15px !important;
+
+    @media only screen and (min-width: $breakpoints-md) {
+      display: none !important;
+    }
+  }
+}
+
+.hotels-pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 40px;
+  @media only screen and (min-width: $breakpoints-md) {
+    margin-top: 65px;
+  }
+}

@@ -1,0 +1,93 @@
+<div class="paiement">
+  <div class="main-container">
+    <app-card-loader
+      *ngIf="(httpsService.state$ | async)?.loading"
+    ></app-card-loader>
+    <ng-container *ngIf="!(httpsService.state$ | async)?.loading">
+      <div class="paiement__container flex flex-col">
+        <div class="booking__info">
+          <h4 class="book-main-heading">
+            {{ "PAYMENT.BOOKINOS" | translate }}
+          </h4>
+          <ul class="booking__price flex flex-col">
+            <li class="booking__item">
+              <h4 class="book-heading-3">
+                {{ this.rooms[0].NbrNights }} غرف ×
+                {{ getRoomsNumbers() }} ليالي
+              </h4>
+              <h4 class="book-heading-1">
+                {{ total_without_vat.toFixed(2) }} ريال
+              </h4>
+            </li>
+            <li class="booking__item">
+              <h4 class="book-heading-3">{{ "PAYMENT.TAX" | translate }}</h4>
+              <h4 class="book-heading-1">{{ total_vat.toFixed(2) }} ريال</h4>
+            </li>
+          </ul>
+          <div class="booking__sum flex items-center justify-between">
+            <h2 class="book-sum">{{ "PAYMENT.SUM" | translate }}</h2>
+            <h3 class="hotel-item-price">{{ total_price.toFixed(2) }} ريال</h3>
+          </div>
+        </div>
+
+        <div class="paiement__bank">
+          <h4 class="book-main-heading">{{ "PAYMENT.BANK" | translate }}</h4>
+          <p class="book-heading-3">
+            {{ "PAYMENT.CHOOSEBANK" | translate }}
+          </p>
+
+          <form
+            [formGroup]="bank_form"
+            *ngIf="
+              !(httpsService.state$ | async)?.empty &&
+              (httpsService.state$ | async)?.data &&
+              (httpsService.state$ | async)?.data.length > 0
+            "
+            class="paiement__form flex flex-col"
+          >
+            <div
+              *ngFor="let item of (httpsService.state$ | async)?.data"
+              class="form-control"
+            >
+              <input
+                class="paiement__input radio"
+                formControlName="bank"
+                [value]="item.Id"
+                name="bank"
+                type="radio"
+                id="bank{{ item.Id }}"
+              />
+              <label for="bank{{ item.Id }}" class="book-heading-4" for="bank1"
+                >{{ item.AccountNameAr }} - {{ item.BankNameAr }}
+              </label>
+            </div>
+            <div
+              class="app-messages error"
+              *ngIf="
+                bank_form.controls['bank'].touched &&
+                bank_form.controls['bank'].invalid
+              "
+            >
+              {{ "Validation.Required" | translate }}
+            </div>
+          </form>
+          <div class="paiement__cta flex flex-col">
+            <button
+              (click)="confirm()"
+              class="btn btn-dark btn-bold btn-12-16 btn-almarai"
+            >
+              {{ "PAYMENT.NEXT" | translate }}
+            </button>
+            <button
+              class="btn btn-secondary-shade-border-dark btn-bold btn-12-16 btn-almarai"
+              (click)="goBack()"
+            >
+              {{ "PAYMENT.BACK" | translate }}
+            </button>
+          </div>
+        </div>
+      </div></ng-container
+    >
+  </div>
+</div>
+<app-mask *ngIf="(bookingService.state$ | async)?.loading"></app-mask>
